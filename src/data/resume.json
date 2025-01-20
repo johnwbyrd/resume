@@ -1,0 +1,142 @@
+{
+  "personalInfo": {
+    "name": "John Byrd",
+    "location": "Irvine, CA",
+    "email": "jbyrd at post dot harvard dot edu",
+    "web": "www.johnbyrd.com"
+  },
+  "skills": [
+    "Real-world experience managing and delivering software projects",
+    "Deep technical knowledge of software development, especially audio AI",
+    "Social media leader and educator with over 17k natural followers",
+    "Proven passion and talent for managing engineering teams"
+  ],
+  "experience": [
+    {
+      "title": "Director of Software",
+      "company": "Sonance",
+      "companyUrl": "https://www.sonance.com",
+      "location": "San Clemente, CA",
+      "startDate": "2021-08",
+      "endDate": "present",
+      "description": "Created, hired and managed internal software development team. Conceived, built, and proved new software platform for novel audio products. Established Agile development processes with highly distributed development teams. Built source code repository and CI/CD test systems. Delivered new software features on a monthly cadence. Managed and mentored software engineers of widely varying skill levels and abilities."
+    },
+    {
+      "title": "Chief Executive Officer",
+      "company": "Gigantic Software",
+      "companyUrl": "https://www.giganticsoftware.com",
+      "location": "Irvine, CA",
+      "startDate": "2006-10",
+      "endDate": "present",
+      "description": "Founded company. Made and sold audio middleware and tools, based on novel AI model. Customers include Sony, Disney, Technicolor, Konami, Electronic Arts. Wrote novel DSP code and tools for next-generation consoles. Millions of copies of games sold using company's technology. Filed patents on new designs. Gave multiple presentations at GDC. Invited speaker at USC's Interactive Media and Games Division and AES."
+    },
+    {
+      "title": "Chief Operating Officer",
+      "company": "CRI Middleware Co., LTD",
+      "companyUrl": "https://www.criware.com/en/",
+      "location": "San Francisco, CA",
+      "startDate": "2003-09",
+      "endDate": "2006-10",
+      "description": "Founded US division. Sold CRI's audio middleware products, originally developed by SEGA-AM2, into US markets. Cultivated leads, demonstrated products, answered deep technical questions, and negotiated contracts and payment schedules with most major US game publishers. Built profitable business in under three years."
+    },
+    {
+      "title": "Principal Engineer",
+      "company": "Sega.com",
+      "companyUrl": "https://www.sega.com",
+      "location": "San Francisco, CA",
+      "startDate": "2003-03",
+      "endDate": "2003-09",
+      "description": "Created the SNAP SDK for online console game development. Devised and managed product schedule. Rewrote online code for XBox and Gamecube, and assisted with PS2 version."
+    },
+    {
+      "title": "Senior Project Manager",
+      "company": "Electronic Arts",
+      "companyUrl": "https://www.ea.com",
+      "location": "San Francisco, CA",
+      "startDate": "2002-09",
+      "endDate": "2003-03",
+      "description": "Tasked and scheduled 61 artists, engineers and production personnel for Freekstyle, an AAA action-sports game. Triaged and assigned bugs; managed master game schedule."
+    },
+    {
+      "title": "Director of Development Technology",
+      "company": "Sega of America",
+      "companyUrl": "https://www.sega.com",
+      "location": "San Francisco, CA",
+      "startDate": "1997-08",
+      "endDate": "2001-03",
+      "description": "Created the Sega Dreamcast (Katana) SDK. Managed development, integration and testing for several Dreamcast core libraries and tools. Managed North American developer technical support; supervised Web-based support system. Built long-term relationships with developers and partner companies. Coached and helped grow engineers and non-technical employees. Full-time staff of thirteen."
+    },
+    {
+      "title": "Senior Engineer",
+      "company": "The 3DO Company",
+      "companyUrl": "https://www.youtube.com/watch?v=BzKF3h1Uc70",
+      "location": "Redwood City, CA",
+      "startDate": "1994-02",
+      "endDate": "1997-08",
+      "description": "Wrote and taught courses at 3DO University, including the first-ever professional curriculum for game audio. Wrote code and provided other technical assistance for Windows, M2 and 3DO development teams. Developed demo programs and content for 3DO system software. Wrote installers for multiple PC games."
+    }
+  ],
+  "academic": [
+    {
+      "text": "Harvard College: BA in Computer Science.",
+      "links": []
+    },
+    {
+      "text": "Lectured on interactive audio at University of Southern California and Game Developer Conference.",
+      "links": [
+        {
+          "text": "University of Southern California",
+          "url": "https://games.usc.edu/"
+        },
+        {
+          "text": "Game Developer Conference",
+          "url": "https://gdconf.com/"
+        }
+      ]
+    },
+    {
+      "text": "Invited speaker to AES; presented ten-year predictions about artificial intelligence trends in audio.",
+      "links": [
+        {
+          "text": "AES",
+          "url": "http://www.aes.org/"
+        }
+      ]
+    },
+    {
+      "text": "Found and ethically reported remote code execution vulnerability in Crypto++.",
+      "links": [
+        {
+          "text": "remote code execution vulnerability",
+          "url": "https://github.com/weidai11/cryptopp/issues/302"
+        },
+        {
+          "text": "Crypto++",
+          "url": "https://www.cryptopp.com/"
+        }
+      ]
+    },
+    {
+      "text": "Founded llvm-mos project, helped write 6502 backend for LLVM, and built development community.",
+      "links": [
+        {
+          "text": "llvm-mos",
+          "url": "https://llvm-mos.org/wiki/Welcome"
+        },
+        {
+          "text": "LLVM",
+          "url": "https://llvm.org/"
+        }
+      ]
+    },
+    {
+      "text": "Top Writer on Quora, on software development and management; averaging 100K views per week, with over 11M views; translated by fans into eight languages.",
+      "links": [
+        {
+          "text": "Quora",
+          "url": "https://qr.ae/TW2aMA"
+        }
+      ]
+    }
+  ]
+}

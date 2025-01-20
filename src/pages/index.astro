@@ -1,11 +1,22 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import ResumeLayout from '../layouts/ResumeLayout.astro';
+import Header from '../components/Header.astro';
+import Experience from '../components/Experience.astro';
+import Skills from '../components/Skills.astro';
+import Academic from '../components/Academic.astro';
+import type { ResumeData } from '../types/resume';  // Changed this line
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Import the JSON data
+import resumeDataRaw from '../data/resume.json';
+
+// Type assertion for the imported JSON
+const resumeData = resumeDataRaw as ResumeData;
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<ResumeLayout resume={resumeData}>
+  <Header slot="header" personalInfo={resumeData.personalInfo} />
+  
+  <Skills items={resumeData.skills} />
+  <Experience jobs={resumeData.experience} />
+  <Academic data={resumeData.academic} />
+</ResumeLayout>
