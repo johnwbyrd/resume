@@ -1,0 +1,26 @@
+---
+import type { ResumeData } from '../types/resume';
+
+interface Props {
+  resume: ResumeData;
+}
+
+const { resume } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{resume.personalInfo.name} - Resume</title>
+  </head>
+  <body class="min-h-screen bg-white">
+    <div class="max-w-4xl mx-auto px-4 md:px-8">
+      <slot name="header" />
+      <main>
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>
