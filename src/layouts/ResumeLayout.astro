@@ -1,5 +1,7 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import type { ResumeData } from '../types/resume';
+import '../styles/base.css';
 
 interface Props {
   resume: ResumeData;
@@ -13,12 +15,14 @@ const { resume } = Astro.props;
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content={Astro.generator} />
     <title>{resume.personalInfo.name} - Resume</title>
+    <ViewTransitions />
   </head>
   <body class="min-h-screen bg-white">
-    <div class="max-w-4xl mx-auto px-4 md:px-8">
+    <div class="max-w-4xl mx-auto px-4 md:px-8 py-8">
       <slot name="header" />
-      <main>
+      <main class="mt-8">
         <slot />
       </main>
     </div>

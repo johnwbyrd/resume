@@ -1,4 +1,12 @@
-#
+# Astro resume template
+
+_IMPORTANT_: This code is provided under the GPL3.0 license, which you can read
+online at https://www.gnu.org/licenses/ . That means, particularly, that you
+cannot pass off this code as your own work, or remove my name (John Byrd) from
+the code. If you remove my name from this code and pass it off as your own work,
+I will add your name publicly to the Hall of Shame, which will make it less
+likely that you will get a job, than it already is. So be nice, and just leave
+in my name in the credits.
 
 ## 🧞 Commands
 

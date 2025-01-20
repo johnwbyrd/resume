@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  /* Print styles */
+  @media print {
+    html {
+      @apply print:text-sm;
+    }
+  }
+}
+
+@layer components {
+  .resume-section {
+    @apply mb-8;
+  }
+
+  .section-title {
+    @apply text-2xl font-semibold mb-4;
+  }
+}

@@ -1,9 +1,16 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
+import tailwind from "@astrojs/tailwind";
 
-import tailwind from '@astrojs/tailwind';
-
-// https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind()]
+  integrations: [
+    tailwind({
+      // Ensure CSS is properly included in build
+      applyBaseStyles: true,
+    }),
+  ],
+  // Optional: If you want to control CSS bundling
+  build: {
+    assets: "_astro",
+    inlineStylesheets: "auto",
+  },
 });
