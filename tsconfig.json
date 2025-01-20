@@ -15,6 +15,11 @@
     "isolatedModules": true,
     "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts", "src/**/*.astro"],
-  "exclude": ["node_modules"]
+  "include": [
+    "src/components/**/*.astro",
+    "src/layouts/**/*.astro",
+    "src/pages/**/*.astro",
+    "src/**/*.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
 }

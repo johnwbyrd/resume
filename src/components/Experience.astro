@@ -1,0 +1,82 @@
+---
+import type { ExperienceProps, Experience, SortDirection, SortField, SortOption } from '../types/resume';
+import ExperienceEntry from './ExperienceEntry.astro';
+
+interface Props extends ExperienceProps {}
+const { jobs } = Astro.props;
+
+// Ensure jobs are sorted by date initially
+const sortedJobs = [...jobs].sort((a: Experience, b: Experience) => {
+    const dateA = a.endDate === 'present' ? '9999-12' : a.endDate;
+    const dateB = b.endDate === 'present' ? '9999-12' : b.endDate;
+    return dateB.localeCompare(dateA);
+});
+---
+
+<section class="resume-section" id="experience">
+    <div class="sticky top-[180px] bg-white z-10 pb-4">
+        <h2 class="section-title">Experience</h2>
+        
+        <div class="flex gap-4 mt-4">
+            <input 
+                type="text" 
+                id="job-search"
+                placeholder="Search experiences..."
+                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            
+            <select 
+                id="sort-select"
+                class="px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+                <option value="endDate-desc">Most Recent</option>
+                <option value="endDate-asc">Oldest First</option>
+                <option value="startDate-desc">Start Date (Newest)</option>
+                <option value="startDate-asc">Start Date (Oldest)</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="experience-list" class="mt-6">
+        {sortedJobs.map((job: Experience) => <ExperienceEntry job={job} />)}
+    </div>
+</section>
+
+<script>
+    import type { SortField, SortDirection, SortOption } from '../types/resume';
+
+    // TypeScript for search and sort functionality
+    const searchInput = document.getElementById('job-search') as HTMLInputElement;
+    const sortSelect = document.getElementById('sort-select') as HTMLSelectElement;
+    const experienceList = document.getElementById('experience-list');
+
+    if (searchInput && sortSelect && experienceList) {
+        const filterJobs = () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const entries = experienceList.getElementsByClassName('job-entry');
+            
+            Array.from(entries).forEach((entry) => {
+                const text = entry.textContent?.toLowerCase() || '';
+                entry.classList.toggle('hidden', !text.includes(searchTerm));
+            });
+        };
+
+        const sortJobs = () => {
+            const [field, direction] = sortSelect.value.split('-') as [SortField, SortDirection];
+            const entries = Array.from(experienceList.getElementsByClassName('job-entry'));
+            
+            entries.sort((a, b) => {
+                const dateA = a.getAttribute(`data-${field}`) || '';
+                const dateB = b.getAttribute(`data-${field}`) || '';
+                return direction === 'asc' 
+                    ? dateA.localeCompare(dateB)
+                    : dateB.localeCompare(dateA);
+            });
+
+            entries.forEach(entry => experienceList.appendChild(entry));
+        };
+
+        searchInput.addEventListener('input', filterJobs);
+        sortSelect.addEventListener('change', sortJobs);
+    }
+</script>

@@ -1,0 +1,26 @@
+---
+import type { SkillsProps } from '../types/resume';
+
+interface Props extends SkillsProps {}
+const { items } = Astro.props;
+
+// Validate that we have skills to display
+if (!items || items.length === 0) {
+    throw new Error('Skills component requires at least one skill item');
+}
+---
+
+<section class="resume-section" id="skills">
+    <div class="sticky top-[120px] bg-white z-10 pb-4">
+        <h2 class="section-title">Skills</h2>
+    </div>
+    
+    <ul class="space-y-3 text-gray-700">
+        {items.map((skill: string) => (
+            <li class="flex items-start">
+                <span class="inline-block w-2 h-2 mt-2 mr-3 bg-blue-500 rounded-full"></span>
+                <span>{skill}</span>
+            </li>
+        ))}
+    </ul>
+</section>
