@@ -1,0 +1,54 @@
+---
+// src/components/Academic.astro
+import type { AcademicEntry } from '../types/resume';
+
+interface Props {
+    data: AcademicEntry[];
+}
+
+const { data } = Astro.props;
+
+// Helper to process text and insert links
+const renderTextWithLinks = (entry: AcademicEntry) => {
+    if (!entry.links || entry.links.length === 0) {
+        return entry.text;
+    }
+
+    let result = entry.text;
+    // Sort links by length of text (longest first) to avoid replacing substrings
+    const sortedLinks = [...entry.links].sort((a, b) => b.text.length - a.text.length);
+    
+    sortedLinks.forEach(link => {
+        result = result.replace(
+            link.text,
+            `<a href="${link.url}" 
+                class="text-blue-600 hover:text-blue-800 hover:underline" 
+                target="_blank" 
+                rel="noopener noreferrer">${link.text}</a>`
+        );
+    });
+
+    return result;
+};
+---
+
+<section class="resume-section" id="academic">
+    <div class="sticky top-[240px] bg-white z-10 pb-4">
+        <h2 class="section-title">Academic</h2>
+    </div>
+
+    <div class="space-y-4 text-gray-700">
+        {data.map(entry => (
+            <p class="leading-relaxed" set:html={renderTextWithLinks(entry)} />
+        ))}
+    </div>
+</section>
+
+<style>
+    /* Ensure proper spacing between paragraphs when printing */
+    @media print {
+        .space-y-4 > :not([hidden]) ~ :not([hidden]) {
+            margin-top: 1rem;
+        }
+    }
+</style>

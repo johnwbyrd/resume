@@ -1,22 +1,23 @@
 ---
+// src/pages/index.astro
 import ResumeLayout from '../layouts/ResumeLayout.astro';
 import Header from '../components/Header.astro';
-import Experience from '../components/Experience.astro';
 import Skills from '../components/Skills.astro';
+import Experience from '../components/Experience.astro';
 import Academic from '../components/Academic.astro';
-import type { ResumeData } from '../types/resume';  // Changed this line
+import type { ResumeData } from '../types/resume';
 
-// Import the JSON data
+// Import JSON data
 import resumeDataRaw from '../data/resume.json';
 
-// Type assertion for the imported JSON
+// Type assertion for imported JSON
 const resumeData = resumeDataRaw as ResumeData;
 ---
 
 <ResumeLayout resume={resumeData}>
-  <Header slot="header" personalInfo={resumeData.personalInfo} />
-  
-  <Skills items={resumeData.skills} />
-  <Experience jobs={resumeData.experience} />
-  <Academic data={resumeData.academic} />
+    <Header slot="header" personalInfo={resumeData.personalInfo} />
+    
+    <Skills items={resumeData.skills} />
+    <Experience jobs={resumeData.experience} />
+    <Academic data={resumeData.academic} />
 </ResumeLayout>

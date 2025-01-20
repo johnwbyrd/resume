@@ -17,6 +17,17 @@ export interface Experience {
   description: string;
 }
 
+export interface AcademicLink {
+  text: string;
+  url: string;
+}
+
+export interface AcademicEntry {
+  text: string;
+  links: AcademicLink[];
+}
+
+// Component Props Interfaces
 export interface HeaderProps {
   personalInfo: PersonalInfo;
 }
@@ -33,6 +44,11 @@ export interface SkillsProps {
   items: string[];
 }
 
+export interface AcademicProps {
+  data: AcademicEntry[];
+}
+
+// Sorting Types
 export type SortDirection = "asc" | "desc";
 export type SortField = "startDate" | "endDate";
 
@@ -41,15 +57,10 @@ export interface SortOption {
   direction: SortDirection;
 }
 
+// Full Resume Data Structure
 export interface ResumeData {
   personalInfo: PersonalInfo;
   skills: string[];
   experience: Experience[];
-  academic: {
-    text: string;
-    links: {
-      text: string;
-      url: string;
-    }[];
-  }[];
+  academic: AcademicEntry[];
 }
