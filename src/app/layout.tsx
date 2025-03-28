@@ -15,32 +15,6 @@ export default function RootLayout({
     <html lang="en" data-theme="simple-light">
       <body>
         {children}
-        
-        {/* Small script for theme switching without React hydration */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                // Get theme from localStorage or default to simple-light
-                var storedTheme = localStorage.getItem('theme') || 'simple-light';
-                document.documentElement.setAttribute('data-theme', storedTheme);
-                
-                // Set the select value to match the current theme
-                var themeSelect = document.getElementById('theme-select');
-                if (themeSelect) {
-                  themeSelect.value = storedTheme;
-                  
-                  // Add event listener for theme changes
-                  themeSelect.addEventListener('change', function(e) {
-                    var newTheme = e.target.value;
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                    localStorage.setItem('theme', newTheme);
-                  });
-                }
-              })();
-            `,
-          }}
-        />
       </body>
     </html>
   );

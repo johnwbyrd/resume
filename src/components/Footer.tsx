@@ -1,4 +1,5 @@
 export function Footer() {
+  // Get current year server-side
   const currentYear = new Date().getFullYear();
   
   return (

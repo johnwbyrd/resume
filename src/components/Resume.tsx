@@ -1,4 +1,4 @@
-import { loadResumeData } from '@/utils/loadResumeData';
+import { ResumeData } from '@/utils/loadResumeData';
 import { 
   Basics,
   Work,
@@ -8,9 +8,11 @@ import {
   Volunteer
 } from '@/components/sections';
 
-export function Resume() {
-  const resumeData = loadResumeData();
-  
+interface ResumeProps {
+  resumeData: ResumeData;
+}
+
+export function Resume({ resumeData }: ResumeProps) {
   return (
     <div className="resume">
       <Basics resumeData={resumeData} />

@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import 'server-only';
+import resumeData from '@/data/resume.json';
 
 // Import resume schema type for proper typing
 export interface ResumeData {
@@ -55,10 +55,6 @@ export interface ResumeData {
 }
 
 export function loadResumeData(): ResumeData {
-  // Load resume data from the JSON file
-  const filePath = path.join(process.cwd(), 'src', 'data', 'resume.json');
-  const fileContents = fs.readFileSync(filePath, 'utf8');
-  const data = JSON.parse(fileContents);
-  
-  return data;
+  // Direct JSON import instead of filesystem operations
+  return resumeData;
 } 
