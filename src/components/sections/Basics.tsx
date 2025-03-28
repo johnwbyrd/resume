@@ -1,24 +1,24 @@
 import { ResumeData } from '@/utils/loadResumeData';
 
-interface PersonalInfoProps {
+interface BasicsProps {
   resumeData: ResumeData;
 }
 
-export function PersonalInfo({ resumeData }: PersonalInfoProps) {
+export function Basics({ resumeData }: BasicsProps) {
   const { basics } = resumeData || {};
 
   if (!basics) return null;
 
   return (
-    <section className="personal-info">
+    <section className="basics">
       <h1>{basics.name}</h1>
       <h2>{basics.label}</h2>
       
-      <div className="personal-summary">
+      <div className="basics-summary">
         <p>{basics.summary}</p>
       </div>
       
-      <div className="personal-contact">
+      <div className="basics-contact">
         {basics.email && (
           <div className="contact-item">
             <span className="contact-label">Email:</span> 

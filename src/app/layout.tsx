@@ -12,7 +12,7 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="simple-light">
       <body>
         {children}
         

@@ -1,7 +1,7 @@
 import { loadResumeData } from '@/utils/loadResumeData';
 import { 
-  PersonalInfo,
-  WorkExperience,
+  Basics,
+  Work,
   Education,
   Skills,
   Projects,
@@ -13,8 +13,8 @@ export function Resume() {
   
   return (
     <div className="resume">
-      <PersonalInfo resumeData={resumeData} />
-      <WorkExperience resumeData={resumeData} />
+      <Basics resumeData={resumeData} />
+      <Work resumeData={resumeData} />
       <Skills resumeData={resumeData} />
       <Education resumeData={resumeData} />
       <Projects resumeData={resumeData} />

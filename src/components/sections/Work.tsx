@@ -1,21 +1,21 @@
 import { ResumeData } from '@/utils/loadResumeData';
 
-interface WorkExperienceProps {
+interface WorkProps {
   resumeData: ResumeData;
 }
 
-export function WorkExperience({ resumeData }: WorkExperienceProps) {
+export function Work({ resumeData }: WorkProps) {
   const { work } = resumeData || {};
 
   if (!work || work.length === 0) return null;
 
   return (
-    <section className="work-experience">
+    <section className="work">
       <h2>Work Experience</h2>
       
-      <div className="experience-list">
+      <div className="work-list">
         {work.map((job, index) => (
-          <article key={index} className="experience-item">
+          <article key={index} className="work-item">
             <header>
               <h3>{job.position}</h3>
               <div className="job-company">
