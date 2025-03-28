@@ -1,0 +1,42 @@
+@import 'variables.scss';
+@import 'home.scss';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $text-color;
+  background-color: $background-color;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: $spacing-medium;
+  line-height: 1.2;
+}
+
+p {
+  margin-bottom: $spacing-medium;
+}
+
+// Utility classes
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-medium;
+} 

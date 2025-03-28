@@ -1,0 +1,209 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "basics": {
+    "name": "John Byrd",
+    "label": "Software Development Executive",
+    "email": "jbyrd@post.harvard.edu",
+    "url": "https://www.johnbyrd.com",
+    "location": {
+      "city": "Irvine",
+      "countryCode": "US",
+      "region": "CA"
+    },
+    "profiles": [
+      {
+        "network": "Quora",
+        "url": "https://qr.ae/TWvVXF",
+        "username": "John Byrd"
+      }
+    ],
+    "summary": "Experienced software executive with deep technical knowledge in audio AI and extensive experience managing and delivering software projects. Social media leader with over 17k natural followers and proven talent for building and managing engineering teams."
+  },
+  "work": [
+    {
+      "name": "Sonance",
+      "position": "Director of Software",
+      "url": "https://www.sonance.com/",
+      "location": "San Clemente, CA",
+      "startDate": "2021-08",
+      "endDate": "present",
+      "summary": "Led internal software development for novel audio products.",
+      "highlights": [
+        "Created, hired and managed internal software development team",
+        "Conceived, built, and proved new software platform for novel audio products",
+        "Established Agile development processes with highly distributed development teams",
+        "Built source code repository and CI/CD test systems",
+        "Delivered new software features on a monthly cadence",
+        "Managed and mentored software engineers of widely varying skill levels and abilities"
+      ]
+    },
+    {
+      "name": "Gigantic Software",
+      "position": "Chief Executive Officer",
+      "url": "https://www.giganticsoftware.com/",
+      "location": "Irvine, CA",
+      "startDate": "2006-10",
+      "endDate": "present",
+      "summary": "Founded company developing audio middleware and tools based on novel AI model.",
+      "highlights": [
+        "Made and sold audio middleware and tools, based on novel AI model",
+        "Acquired customers including Sony, Disney, Technicolor, Konami, Electronic Arts",
+        "Wrote novel DSP code and tools for next-generation consoles",
+        "Millions of copies of games sold using company's technology",
+        "Filed patents on new designs",
+        "Gave multiple presentations at GDC",
+        "Invited speaker at USC's Interactive Media and Games Division and AES"
+      ]
+    },
+    {
+      "name": "CRI Middleware Co., LTD. (Sega)",
+      "position": "Chief Operating Officer",
+      "url": "https://www.criware.com/en/",
+      "location": "San Francisco, CA",
+      "startDate": "2003-09",
+      "endDate": "2006-10",
+      "summary": "Founded US division selling CRI's audio middleware products to American market.",
+      "highlights": [
+        "Founded US division",
+        "Sold CRI's audio middleware products, originally developed by SEGA-AM2, into US markets",
+        "Cultivated leads, demonstrated products, answered deep technical questions",
+        "Negotiated contracts and payment schedules with most major US game publishers",
+        "Built profitable business in under three years"
+      ]
+    },
+    {
+      "name": "Sega.com",
+      "position": "Principal Engineer",
+      "url": "https://www.sega.com/",
+      "location": "San Francisco, CA",
+      "startDate": "2003-03",
+      "endDate": "2003-09",
+      "summary": "Created the SNAP SDK for online console game development.",
+      "highlights": [
+        "Created the SNAP SDK for online console game development",
+        "Devised and managed product schedule",
+        "Rewrote online code for XBox and Gamecube, and assisted with PS2 version"
+      ]
+    },
+    {
+      "name": "Electronic Arts",
+      "position": "Senior Project Manager",
+      "url": "https://www.ea.com/",
+      "location": "San Francisco, CA",
+      "startDate": "2002-09",
+      "endDate": "2003-03",
+      "summary": "Managed team for AAA action-sports game.",
+      "highlights": [
+        "Tasked and scheduled 61 artists, engineers and production personnel for Freekstyle, an AAA action-sports game",
+        "Triaged and assigned bugs",
+        "Managed master game schedule"
+      ]
+    },
+    {
+      "name": "Sega of America",
+      "position": "Director of Development Technology",
+      "url": "https://www.sega.com/",
+      "location": "San Francisco, CA",
+      "startDate": "1997-08",
+      "endDate": "2001-03",
+      "summary": "Created the Sega Dreamcast SDK.",
+      "highlights": [
+        "Created the Sega Dreamcast (Katana) SDK",
+        "Managed development, integration and testing for several Dreamcast core libraries and tools",
+        "Managed North American developer technical support",
+        "Supervised Web-based support system",
+        "Built long-term relationships with developers and partner companies",
+        "Coached and helped grow engineers and non-technical employees",
+        "Full-time staff of thirteen"
+      ]
+    },
+    {
+      "name": "The 3DO Company",
+      "position": "Senior Engineer",
+      "url": "",
+      "location": "Redwood City, CA",
+      "startDate": "1994-02",
+      "endDate": "1997-08",
+      "summary": "Taught courses at 3DO University and developed demo programs.",
+      "highlights": [
+        "Wrote and taught courses at 3DO University, including the first-ever professional curriculum for game audio",
+        "Wrote code and provided other technical assistance for Windows, M2 and 3DO development teams",
+        "Developed demo programs and content for 3DO system software",
+        "Wrote installers for multiple PC games"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Harvard College",
+      "url": "https://www.harvard.edu",
+      "area": "Computer Science",
+      "studyType": "BA"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Software Project Management",
+      "keywords": ["Agile", "Project Delivery", "Team Management"]
+    },
+    {
+      "name": "Audio Technology",
+      "keywords": ["Audio AI", "DSP", "Audio Middleware"]
+    },
+    {
+      "name": "Leadership",
+      "keywords": ["Team Building", "Mentoring", "Engineering Management"]
+    },
+    {
+      "name": "Software Development",
+      "keywords": ["CI/CD", "Source Control", "Software Architecture"]
+    }
+  ],
+  "publications": [],
+  "awards": [],
+  "projects": [
+    {
+      "name": "llvm-mos",
+      "description": "Founded project, helped write 6502 backend for LLVM, and built development community",
+      "url": "https://llvm-mos.org/wiki/Welcome"
+    },
+    {
+      "name": "Crypto++ Remote Code Execution Vulnerability",
+      "description": "Found and ethically reported remote code execution vulnerability",
+      "url": "https://github.com/weidai11/cryptopp/issues/302"
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "University of Southern California",
+      "position": "Guest Lecturer",
+      "summary": "Lectured on interactive audio",
+      "url": "https://games.usc.edu/"
+    },
+    {
+      "organization": "Game Developer Conference",
+      "position": "Speaker",
+      "summary": "Presented at industry leading game development conference"
+    },
+    {
+      "organization": "AES",
+      "position": "Speaker",
+      "summary": "Presented ten-year predictions about artificial intelligence trends in audio",
+      "url": "http://www.aes.org/"
+    },
+    {
+      "organization": "Quora",
+      "position": "Top Writer",
+      "summary": "Top Writer on software development and management with over 11M views, translated by fans into eight languages",
+      "url": "https://qr.ae/TW2aMA",
+      "highlights": ["Averaging 100K views per week", "Over 11M total views", "Translated into eight languages"]
+    }
+  ],
+  "languages": [],
+  "interests": [],
+  "references": [],
+  "meta": {
+    "lastModified": "2025-03-27"
+  }
+}
+
