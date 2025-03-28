@@ -1,5 +1,6 @@
 import '@/styles/globals.scss';
 import { ReactNode } from 'react';
+import { ThemeProvider } from '@/themes/ThemeContext';
 
 export const metadata = {
   title: 'John Byrd | Resume',
@@ -14,7 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="simple-light">
       <body>
-        {children}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
         
         {/* Small script for theme switching without React hydration */}
         <script

@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, ReactNode } from 'react';
 import resumeData from './resume.json';
 
 // Define resume structure (simplified for clarity)
@@ -58,21 +58,14 @@ interface ResumeData {
 }
 
 interface ResumeContextType {
-  resume: ResumeData | null;
+  resume: ResumeData;
 }
 
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 
 export function ResumeProvider({ children }: { children: ReactNode }) {
-  const [resume, setResume] = useState<ResumeData | null>(null);
-
-  useEffect(() => {
-    // In a real app, you might fetch this from an API
-    setResume(resumeData as unknown as ResumeData);
-  }, []);
-
   return (
-    <ResumeContext.Provider value={{ resume }}>
+    <ResumeContext.Provider value={{ resume: resumeData as unknown as ResumeData }}>
       {children}
     </ResumeContext.Provider>
   );
