@@ -1,22 +1,27 @@
-'use client';
-
-import { ThemeSwitcher } from '@/components/ThemeSwitcher';
-import { useResume } from '@/data/ResumeContext';
-
 export function Header() {
-  const { resume } = useResume();
-  const name = resume?.basics?.name || 'John Byrd';
-  const label = resume?.basics?.label || 'Software Development Executive';
-
   return (
     <header className="header">
       <div className="container">
         <div className="header-content">
           <div className="header-info">
-            <h1 className="name">{name}</h1>
-            <p className="label">{label}</p>
+            <h1 className="name">John Byrd</h1>
+            <p className="label">Software Development Executive</p>
           </div>
-          <ThemeSwitcher />
+          
+          <div className="theme-switcher">
+            <label htmlFor="theme-select">Theme:</label>
+            <select 
+              id="theme-select" 
+              defaultValue="simple-light"
+              aria-label="Select theme"
+            >
+              <option value="simple-light">Simple Light</option>
+              <option value="simple-dark">Simple Dark</option>
+              <option value="elegant">Elegant</option>
+              <option value="retro">Retro VT-100</option>
+              <option value="print">Print</option>
+            </select>
+          </div>
         </div>
       </div>
     </header>

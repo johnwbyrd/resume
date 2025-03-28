@@ -28,6 +28,7 @@
    - Create the main layout container
    - Build header and footer components
    - Set up navigation if needed
+   - Make sure that everything possible is rendered as a static site
 
 6. Develop the resume section components
    - Create components for each resume section (personal info, experience, education, skills)
