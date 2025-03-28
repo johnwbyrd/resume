@@ -1,0 +1,23 @@
+// Import variables first (defines root fallback variables)
+@import 'variables';
+
+// Import base styles
+@import 'base';
+
+// Import mixins
+@import 'mixins';
+
+// Import theme definitions
+@import 'themes/light';
+@import 'themes/dark';
+@import 'themes/elegant';
+@import 'themes/retro';
+@import 'themes/print';
+
+// Import component styles
+@import 'components/layout';
+@import 'components/header';
+@import 'components/footer';
+@import 'components/theme-switcher';
+@import 'components/resume';
+@import 'components/home'; 

@@ -1,0 +1,24 @@
+@import '../mixins';
+
+.header {
+  background-color: var(--surface-color);
+  padding: var(--spacing-medium) 0;
+  border-bottom: 1px solid var(--border-color);
+  @include theme-transition;
+  
+  .header-content {
+    @include flex-between;
+    
+    .header-info {
+      .name {
+        font-size: var(--font-size-xl);
+        margin-bottom: var(--spacing-small);
+      }
+      
+      .label {
+        color: var(--text-color-light);
+        margin: 0;
+      }
+    }
+  }
+} 

@@ -1,0 +1,36 @@
+@import '../mixins';
+@import '../themes';
+
+// Print Theme Colors
+$print-colors: (
+  primary: #000,
+  secondary: #444,
+  background: #fff,
+  surface: #fff,
+  text: #000,
+  text-light: #444,
+  border: #ddd,
+  shadow: rgba(0, 0, 0, 0),
+  tag-bg: #f5f5f5
+);
+
+// Print Typography
+$print-typography: (
+  font-family: 'Times New Roman', serif,
+  font-family-heading: 'Times New Roman', serif,
+  font-size-base: 12pt,
+  font-size-small: 10pt,
+  font-size-normal: 12pt,
+  font-size-large: 14pt,
+  font-size-xl: 16pt,
+  font-size-xxl: 18pt
+);
+
+// Apply the theme using the mixin
+@include create-theme(
+  'print', 
+  $print-colors, 
+  $print-typography, 
+  $base-spacing, 
+  $base-misc
+); 

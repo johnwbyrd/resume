@@ -1,0 +1,29 @@
+@import 'mixins';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  @include font-base;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  @include theme-transition;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  @include theme-transition;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @include heading;
+} 

@@ -1,0 +1,38 @@
+@import '../mixins';
+
+.footer {
+  background-color: var(--surface-color);
+  padding: var(--spacing-large) 0;
+  border-top: 1px solid var(--border-color);
+  margin-top: auto;
+  @include theme-transition;
+  
+  .footer-content {
+    @include flex-column;
+    gap: var(--spacing-large);
+    
+    @include desktop {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .contact-info {
+      @include flex-column;
+      gap: var(--spacing-small);
+      
+      p {
+        margin: 0;
+        
+        .label {
+          font-weight: bold;
+        }
+      }
+    }
+    
+    .copyright {
+      margin: 0;
+      color: var(--text-color-light);
+    }
+  }
+} 

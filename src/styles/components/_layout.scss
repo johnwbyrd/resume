@@ -1,0 +1,15 @@
+@import '../mixins';
+
+.layout {
+  @include flex-column;
+  min-height: 100vh;
+  
+  .main-content {
+    flex: 1;
+    padding: var(--spacing-large) 0;
+  }
+}
+
+.container {
+  @include container;
+} 

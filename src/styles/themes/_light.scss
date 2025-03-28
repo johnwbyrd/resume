@@ -1,0 +1,24 @@
+@import '../mixins';
+@import '../themes';
+
+// Simple Light Theme Colors
+$light-colors: (
+  primary: #0070f3,
+  secondary: #ff4081,
+  background: #ffffff,
+  surface: #f5f5f5,
+  text: #333333,
+  text-light: #666666,
+  border: #e0e0e0,
+  shadow: rgba(0, 0, 0, 0.1),
+  tag-bg: #f0f0f0
+);
+
+// Apply the theme using the mixin
+@include create-theme(
+  'simple-light', 
+  $light-colors, 
+  $base-typography, 
+  $base-spacing, 
+  $base-misc
+); 

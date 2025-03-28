@@ -1,0 +1,74 @@
+// Typography mixins
+@mixin font-base {
+  font-family: var(--font-family);
+  font-size: var(--font-size-normal);
+  line-height: 1.5;
+}
+
+@mixin heading {
+  font-family: var(--font-family-heading, var(--font-family));
+  line-height: 1.2;
+  margin-bottom: var(--spacing-medium);
+}
+
+// Layout mixins
+@mixin container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-medium);
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Responsive mixins
+@mixin mobile {
+  @media (max-width: 576px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
+
+// Component mixins
+@mixin card {
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: var(--spacing-large);
+}
+
+@mixin tag {
+  background-color: var(--tag-bg-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-small) var(--spacing-medium);
+  font-size: var(--font-size-small);
+  display: inline-block;
+}
+
+// Transitions
+@mixin theme-transition {
+  transition: 
+    color var(--transition-speed) var(--transition-timing),
+    background-color var(--transition-speed) var(--transition-timing),
+    border-color var(--transition-speed) var(--transition-timing);
+} 

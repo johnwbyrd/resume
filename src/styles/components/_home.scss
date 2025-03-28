@@ -1,9 +1,7 @@
-@use 'variables.scss' as *;
-@use 'resume.scss';
+@import '../mixins';
 
 .home-page {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
@@ -27,9 +25,8 @@
 }
 
 .resume-page {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-large, 2rem);
+  padding: var(--spacing-large);
 } 

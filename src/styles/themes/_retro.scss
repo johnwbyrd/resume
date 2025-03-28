@@ -1,0 +1,36 @@
+@import '../mixins';
+@import '../themes';
+
+// Retro VT-100 Theme Colors
+$retro-colors: (
+  primary: #33ff33,
+  secondary: #33cc33,
+  background: #121212,
+  surface: #121212,
+  text: #33ff33,
+  text-light: #33cc33,
+  border: #33ff33,
+  shadow: rgba(0, 0, 0, 0.8),
+  tag-bg: #1a1a1a
+);
+
+// Retro Typography
+$retro-typography: (
+  font-family: 'Courier New', monospace,
+  font-family-heading: 'Courier New', monospace,
+  font-size-base: 16px,
+  font-size-small: 0.875rem,
+  font-size-normal: 1rem,
+  font-size-large: 1.25rem,
+  font-size-xl: 1.5rem,
+  font-size-xxl: 2rem
+);
+
+// Apply the theme using the mixin
+@include create-theme(
+  'retro', 
+  $retro-colors, 
+  $retro-typography, 
+  $base-spacing, 
+  $base-misc
+); 

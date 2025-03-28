@@ -1,4 +1,4 @@
-import '@/styles/home.scss';
+import '@/styles/globals.scss';
 import { loadResumeData } from '@/utils/loadResumeData';
 import { Resume } from '@/components/Resume';
 import { Header } from '@/components/Header';

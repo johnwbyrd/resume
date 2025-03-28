@@ -1,0 +1,26 @@
+@import '../mixins';
+
+.theme-switcher {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-small);
+  
+  label {
+    margin-right: var(--spacing-small);
+  }
+  
+  select {
+    padding: var(--spacing-small);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: var(--font-size-small);
+    @include theme-transition;
+    
+    &:focus {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 1px;
+    }
+  }
+} 

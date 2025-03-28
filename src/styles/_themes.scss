@@ -1,0 +1,65 @@
+// Theme generation mixin
+@mixin create-theme($name, $colors, $typography, $spacing, $misc) {
+  html[data-theme="#{$name}"] {
+    // Colors
+    --primary-color: map-get($colors, primary);
+    --secondary-color: map-get($colors, secondary);
+    --background-color: map-get($colors, background);
+    --surface-color: map-get($colors, surface);
+    --text-color: map-get($colors, text);
+    --text-color-light: map-get($colors, text-light);
+    --border-color: map-get($colors, border);
+    --shadow-color: map-get($colors, shadow);
+    --tag-bg-color: map-get($colors, tag-bg);
+    
+    // Typography
+    --font-family: map-get($typography, font-family);
+    --font-family-heading: map-get($typography, font-family-heading);
+    --font-size-base: map-get($typography, font-size-base);
+    --font-size-small: map-get($typography, font-size-small);
+    --font-size-normal: map-get($typography, font-size-normal);
+    --font-size-large: map-get($typography, font-size-large);
+    --font-size-xl: map-get($typography, font-size-xl);
+    --font-size-xxl: map-get($typography, font-size-xxl);
+    
+    // Spacing
+    --spacing-unit: map-get($spacing, unit);
+    --spacing-small: map-get($spacing, small);
+    --spacing-medium: map-get($spacing, medium);
+    --spacing-large: map-get($spacing, large);
+    --spacing-xl: map-get($spacing, xl);
+    
+    // Misc
+    --border-radius: map-get($misc, border-radius);
+    --box-shadow: map-get($misc, box-shadow);
+    --transition-speed: map-get($misc, transition-speed);
+    --transition-timing: map-get($misc, transition-timing);
+  }
+}
+
+// Default base values for all themes
+$base-spacing: (
+  unit: 8px,
+  small: 0.25rem,
+  medium: 0.5rem, 
+  large: 1rem,
+  xl: 2rem
+);
+
+$base-typography: (
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif,
+  font-family-heading: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif,
+  font-size-base: 16px,
+  font-size-small: 0.875rem,
+  font-size-normal: 1rem,
+  font-size-large: 1.25rem,
+  font-size-xl: 1.5rem,
+  font-size-xxl: 2rem
+);
+
+$base-misc: (
+  border-radius: 4px,
+  box-shadow: 0 2px 10px var(--shadow-color),
+  transition-speed: 0.3s,
+  transition-timing: ease
+); 

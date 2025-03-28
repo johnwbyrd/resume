@@ -1,0 +1,36 @@
+@import '../mixins';
+@import '../themes';
+
+// Elegant Theme Colors
+$elegant-colors: (
+  primary: #8a4d76,
+  secondary: #a86692,
+  background: #f8f5f2,
+  surface: #fff,
+  text: #2d2d2d,
+  text-light: #6a6a6a,
+  border: #e6e0d8,
+  shadow: rgba(0, 0, 0, 0.05),
+  tag-bg: #f0e9e2
+);
+
+// Elegant Typography
+$elegant-typography: (
+  font-family: 'Georgia', serif,
+  font-family-heading: 'Georgia', serif,
+  font-size-base: 16px,
+  font-size-small: 0.875rem,
+  font-size-normal: 1rem,
+  font-size-large: 1.25rem,
+  font-size-xl: 1.5rem,
+  font-size-xxl: 2rem
+);
+
+// Apply the theme using the mixin
+@include create-theme(
+  'elegant', 
+  $elegant-colors, 
+  $elegant-typography, 
+  $base-spacing, 
+  $base-misc
+); 
