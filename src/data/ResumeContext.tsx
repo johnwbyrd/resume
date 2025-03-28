@@ -1,5 +1,3 @@
-'use client';
-
 import { createContext, useContext, ReactNode } from 'react';
 import resumeData from './resume.json';
 
@@ -65,7 +63,7 @@ const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 
 export function ResumeProvider({ children }: { children: ReactNode }) {
   return (
-    <ResumeContext.Provider value={{ resume: resumeData as unknown as ResumeData }}>
+    <ResumeContext.Provider value={{ resume: resumeData }}>
       {children}
     </ResumeContext.Provider>
   );
