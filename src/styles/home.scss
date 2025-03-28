@@ -7,16 +7,20 @@
   justify-content: center;
   min-height: 100vh;
   text-align: center;
-  padding: $spacing-large;
+  padding: var(--spacing-large);
   
   h1 {
-    color: $primary-color;
-    font-size: 2.5rem;
-    margin-bottom: $spacing-medium;
+    color: var(--primary-color);
+    font-size: var(--font-size-xxl);
+    margin-bottom: var(--spacing-medium);
   }
   
   p {
     max-width: 600px;
     margin: 0 auto;
+  }
+  
+  .summary-section {
+    margin-bottom: var(--spacing-xl);
   }
 } 

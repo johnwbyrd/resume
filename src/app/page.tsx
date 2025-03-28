@@ -1,10 +1,15 @@
 import '@/styles/home.scss';
+import { Layout } from '@/components/Layout';
 
 export default function Home() {
   return (
-    <div className="home-page">
-      <h1>John Byrd</h1>
-      <p>Welcome to my resume website. This site is currently under development.</p>
-    </div>
+    <Layout>
+      <div className="home-page">
+        <section className="summary-section">
+          <h2>Summary</h2>
+          <p>Welcome to my resume website. This site is currently under development.</p>
+        </section>
+      </div>
+    </Layout>
   );
 }
