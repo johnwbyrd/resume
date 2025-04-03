@@ -1,0 +1,138 @@
+/* Commodore 64 Theme - Base Styles */
+
+/* C64 Font */
+@font-face {
+  font-family: 'C64_Pro_Mono-STYLE';
+  src: url('/fonts/c64/C64_Pro_Mono-STYLE.eot');
+  src: url('/fonts/c64/C64_Pro_Mono-STYLE.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/c64/C64_Pro_Mono-STYLE.woff2') format('woff2'),
+       url('/fonts/c64/C64_Pro_Mono-STYLE.woff') format('woff'),
+       url('/fonts/c64/C64_Pro_Mono-STYLE.ttf') format('truetype'),
+       url('/fonts/c64/C64_Pro_Mono-STYLE.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'C64_Pro-STYLE';
+  src: url('/fonts/c64/C64_Pro-STYLE.eot');
+  src: url('/fonts/c64/C64_Pro-STYLE.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/c64/C64_Pro-STYLE.woff2') format('woff2'),
+       url('/fonts/c64/C64_Pro-STYLE.woff') format('woff'),
+       url('/fonts/c64/C64_Pro-STYLE.ttf') format('truetype'),
+       url('/fonts/c64/C64_Pro-STYLE.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root[data-theme="c64"] {
+  /* C64 Color Palette */
+  --c64-black: #000000;
+  --c64-white: #FFFFFF;
+  --c64-red: #880000;
+  --c64-cyan: #AAFFEE;
+  --c64-purple: #CC44CC;
+  --c64-green: #00CC55;
+  --c64-blue: #0000AA;
+  --c64-yellow: #EEEE77;
+  --c64-orange: #DD8855;
+  --c64-brown: #664400;
+  --c64-light-red: #FF7777;
+  --c64-dark-grey: #333333;
+  --c64-medium-grey: #777777;
+  --c64-light-green: #AAFF66;
+  --c64-light-blue: #0088FF;
+  --c64-light-grey: #BBBBBB;
+  
+  /* Theme Variables */
+  --bg-primary: var(--c64-blue);
+  --text-primary: var(--c64-light-grey);
+  --text-secondary: var(--c64-cyan);
+  --border-color: var(--c64-light-blue);
+  --c64-font: "C64_Pro_Mono-STYLE", monospace;
+}
+
+/* Apply C64 theme colors and font */
+[data-theme="c64"] body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--c64-font);
+}
+
+/* Make all text the same size */
+[data-theme="c64"] .resume * {
+  font-size: 1rem;
+}
+
+/* Override text colors for specific elements */
+[data-theme="c64"] .job-duration,
+[data-theme="c64"] .job-location,
+[data-theme="c64"] .contact-label {
+  color: var(--text-secondary);
+}
+
+/* Override layout for skills */
+[data-theme="c64"] .skills-list,
+[data-theme="c64"] .skill-keywords {
+  display: block;
+}
+
+[data-theme="c64"] .skill-item {
+  border: none;
+  background-color: var(--c64-dark-grey);
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Theme selector */
+[data-theme="c64"] #theme-select {
+  background-color: var(--c64-dark-grey);
+  color: var(--c64-light-grey);
+  border-color: var(--c64-light-blue);
+}
+
+/* C64-specific styling */
+[data-theme="c64"] h1 {
+  color: var(--c64-yellow);
+}
+
+[data-theme="c64"] h2 {
+  color: var(--c64-light-green);
+}
+
+[data-theme="c64"] h3 {
+  color: var(--c64-cyan);
+}
+
+[data-theme="c64"] a {
+  color: var(--c64-light-blue);
+  text-decoration: underline;
+}
+
+[data-theme="c64"] a:hover {
+  color: var(--c64-white);
+}
+
+/* Add a subtle scanline effect */
+[data-theme="c64"] .resume {
+  position: relative;
+}
+
+[data-theme="c64"] .resume::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1;
+} 

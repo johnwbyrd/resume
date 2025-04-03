@@ -66,4 +66,21 @@
   border-color: var(--border-color);
 }
 
+/* Fix for name at the top of the page */
+[data-theme="retro"] .name {
+  font-size: 2rem;
+}
+
+@media (min-width: 640px) {
+  [data-theme="retro"] .name {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  [data-theme="retro"] .name {
+    font-size: 3rem;
+  }
+}
+
 /* TODO: Implement retro theme styles */ 
