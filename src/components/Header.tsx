@@ -1,5 +1,3 @@
-import { ThemeSwitcher } from './ThemeSwitcher';
-
 export function Header() {
   return (
     <header className="header">
@@ -9,7 +7,6 @@ export function Header() {
             <h1 className="name">John Byrd</h1>
             <p className="label">Software Development Executive</p>
           </div>
-          <ThemeSwitcher />
         </div>
       </div>
     </header>
