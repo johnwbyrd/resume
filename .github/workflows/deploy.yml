@@ -25,13 +25,13 @@ jobs:
       
       - name: Deploy to Staging
         if: github.ref == 'refs/heads/develop'
-        uses: appleboy/scp-action@v0.1.7
+        uses: easingthemes/ssh-deploy@v5.1.0
         with:
-          host: ${{ secrets.STAGING_HOST }}
-          username: ${{ secrets.STAGING_USER }}
-          key: ${{ secrets.STAGING_SSH_KEY }}
-          source: "out"
-          target: ${{ secrets.STAGING_PATH }}
+          REMOTE_HOST: ${{ secrets.STAGING_HOST }}
+          REMOTE_USER: ${{ secrets.STAGING_USER }}
+          SSH_PRIVATE_KEY: ${{ secrets.STAGING_SSH_KEY }}
+          SOURCE: out/
+          TARGET: ${{ secrets.STAGING_PATH }} 
       
       - name: Deploy to Production
         if: github.ref == 'refs/heads/main'
