@@ -30,7 +30,7 @@ jobs:
           host: ${{ secrets.STAGING_HOST }}
           username: ${{ secrets.STAGING_USER }}
           key: ${{ secrets.STAGING_SSH_KEY }}
-          source: "out/*"
+          source: "out"
           target: ${{ secrets.STAGING_PATH }}
       
       - name: Deploy to Production
@@ -40,5 +40,5 @@ jobs:
           host: ${{ secrets.PRODUCTION_HOST }}
           username: ${{ secrets.PRODUCTION_USER }}
           key: ${{ secrets.PRODUCTION_SSH_KEY }}
-          source: "out/*"
+          source: "out"
           target: ${{ secrets.PRODUCTION_PATH }} 
