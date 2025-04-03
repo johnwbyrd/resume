@@ -1,0 +1,105 @@
+/* Simple theme variables */
+[data-theme="simple-light"] {
+  --bg-primary: #ffffff;
+  --text-primary: #1a1a1a;
+  --border-color: #e5e7eb;
+}
+
+[data-theme="simple-dark"] {
+  --bg-primary: #1a1a1a;
+  --text-primary: #ffffff;
+  --border-color: #374151;
+}
+
+/* Apply theme colors */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Theme-specific component styles */
+.header {
+  @apply py-6 border-b;
+  border-color: var(--border-color);
+}
+
+.main-content {
+  @apply py-8;
+}
+
+.footer {
+  @apply py-6 border-t mt-8;
+  border-color: var(--border-color);
+}
+
+/* Resume-specific styles */
+.resume {
+  @apply space-y-8;
+}
+
+.basics {
+  @apply text-center mb-12;
+}
+
+.basics-summary {
+  @apply max-w-2xl mx-auto mt-4;
+}
+
+.contact-item {
+  @apply mt-2;
+}
+
+.contact-label {
+  @apply font-semibold mr-2;
+}
+
+.contact-value {
+  color: var(--text-primary);
+}
+
+/* Work experience */
+.work-item {
+  @apply mb-8;
+}
+
+.job-company {
+  @apply text-lg font-semibold;
+}
+
+.job-duration {
+  @apply text-sm text-gray-600 dark:text-gray-400;
+}
+
+.job-location {
+  @apply text-sm text-gray-600 dark:text-gray-400;
+}
+
+.job-summary {
+  @apply mt-2;
+}
+
+.job-highlights {
+  @apply mt-2;
+}
+
+/* Skills */
+.skills-list {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
+}
+
+.skill-item {
+  @apply p-4 border rounded;
+  border-color: var(--border-color);
+}
+
+.skill-keywords {
+  @apply flex flex-wrap gap-2 mt-2;
+}
+
+/* Theme selector */
+#theme-select {
+  @apply px-2 py-1 rounded border;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+} 

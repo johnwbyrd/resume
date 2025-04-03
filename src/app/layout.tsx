@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Layout } from '@/components/Layout';
-import './globals.css';
+import '@/themes/index.css';
+import { THEMES, THEME_LABELS } from '@/lib/theme';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -47,11 +48,9 @@ export default function RootLayout({
             className="px-2 py-1 rounded border border-gray-300 bg-white dark:bg-gray-800"
             aria-label="Select theme"
           >
-            <option value="simple-light">Simple Light</option>
-            <option value="simple-dark">Simple Dark</option>
-            <option value="elegant">Elegant</option>
-            <option value="retro">Retro VT-100</option>
-            <option value="print">Print</option>
+            {THEMES.map(theme => (
+              <option key={theme} value={theme}>{THEME_LABELS[theme]}</option>
+            ))}
           </select>
         </div>
         <Layout>{children}</Layout>

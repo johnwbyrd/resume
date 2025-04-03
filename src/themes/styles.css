@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base theme variables */
+:root {
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+}
+
+/* Base layout */
+.container {
+  @apply mx-auto px-4;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold tracking-tight;
+  line-height: 1.2;
+}
+
+h1 {
+  @apply text-3xl mb-4;
+}
+
+h2 {
+  @apply text-2xl mb-3;
+}
+
+h3 {
+  @apply text-xl mb-2;
+}
+
+p {
+  @apply mb-4;
+  line-height: 1.6;
+}
+
+/* Section spacing */
+section {
+  @apply mb-8;
+}
+
+/* Lists */
+ul, ol {
+  @apply mb-4 pl-6;
+}
+
+li {
+  @apply mb-2;
+}
+
+/* Links */
+a {
+  @apply underline decoration-2 underline-offset-2;
+}
+
+a:hover {
+  @apply decoration-4;
+}
+
+/* Responsive adjustments */
+@media (min-width: 640px) {
+  .container {
+    @apply px-8;
+  }
+  
+  h1 {
+    @apply text-4xl;
+  }
+  
+  h2 {
+    @apply text-3xl;
+  }
+  
+  h3 {
+    @apply text-2xl;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    @apply px-12;
+  }
+  
+  h1 {
+    @apply text-5xl;
+  }
+  
+  h2 {
+    @apply text-4xl;
+  }
+  
+  h3 {
+    @apply text-3xl;
+  }
+}
+
+/* Theme variables */
+[data-theme="simple-light"] {
+  --bg-primary: #ffffff;
+  --text-primary: #1a1a1a;
+  --border-color: #e5e7eb;
+}
+
+[data-theme="simple-dark"] {
+  --bg-primary: #1a1a1a;
+  --text-primary: #ffffff;
+  --border-color: #374151;
+}
+
+[data-theme="elegant"] {
+  --bg-primary: #f8f9fa;
+  --text-primary: #2c3e50;
+  --border-color: #dee2e6;
+}
+
+[data-theme="retro"] {
+  --bg-primary: #000000;
+  --text-primary: #00ff00;
+  --border-color: #00ff00;
+}
+
+[data-theme="print"] {
+  --bg-primary: #ffffff;
+  --text-primary: #000000;
+  --border-color: #000000;
+}
+
+/* Theme-specific component styles */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.header {
+  @apply py-6 border-b;
+  border-color: var(--border-color);
+}
+
+.main-content {
+  @apply py-8;
+}
+
+.footer {
+  @apply py-6 border-t mt-8;
+  border-color: var(--border-color);
+}
+
+/* Resume-specific styles */
+.resume {
+  @apply space-y-8;
+}
+
+.basics {
+  @apply text-center mb-12;
+}
+
+.basics-summary {
+  @apply max-w-2xl mx-auto mt-4;
+}
+
+.contact-item {
+  @apply mt-2;
+}
+
+.contact-label {
+  @apply font-semibold mr-2;
+}
+
+.contact-value {
+  color: var(--text-primary);
+}
+
+/* Work experience */
+.work-item {
+  @apply mb-8;
+}
+
+.job-company {
+  @apply text-lg font-semibold;
+}
+
+.job-duration {
+  @apply text-sm text-gray-600 dark:text-gray-400;
+}
+
+.job-location {
+  @apply text-sm text-gray-600 dark:text-gray-400;
+}
+
+.job-summary {
+  @apply mt-2;
+}
+
+.job-highlights {
+  @apply mt-2;
+}
+
+/* Skills */
+.skills-list {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
+}
+
+.skill-item {
+  @apply p-4 border rounded;
+  border-color: var(--border-color);
+}
+
+.skill-keywords {
+  @apply flex flex-wrap gap-2 mt-2;
+}
+
+/* Theme selector */
+#theme-select {
+  @apply px-2 py-1 rounded border;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+} 
