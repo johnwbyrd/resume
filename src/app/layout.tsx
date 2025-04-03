@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Layout } from '@/components/Layout';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,13 +16,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="simple-light">
       <head>
         <script dangerouslySetInnerHTML={{
           __html: `
-            // Set initial theme before React hydration
-            const storedTheme = localStorage.getItem('theme') || 'simple-light';
-            document.documentElement.setAttribute('data-theme', storedTheme);
+            (function() {
+              // Wait for DOM to be ready
+              document.addEventListener('DOMContentLoaded', function() {
+                const themeSelect = document.getElementById('theme-select');
+                if (!themeSelect) return;
+                
+                // Set select value to match current theme
+                themeSelect.value = document.documentElement.getAttribute('data-theme') || 'simple-light';
+                
+                // Handle theme changes
+                themeSelect.addEventListener('change', function(e) {
+                  const newTheme = e.target.value;
+                  document.documentElement.setAttribute('data-theme', newTheme);
+                  localStorage.setItem('theme', newTheme);
+                });
+              });
+            })();
           `
         }} />
       </head>
@@ -40,24 +55,6 @@ export default function RootLayout({
           </select>
         </div>
         <Layout>{children}</Layout>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            (function() {
-              const themeSelect = document.getElementById('theme-select');
-              if (!themeSelect) return;
-              
-              // Set select value to match current theme
-              themeSelect.value = document.documentElement.getAttribute('data-theme') || 'simple-light';
-              
-              // Handle theme changes
-              themeSelect.addEventListener('change', function(e) {
-                const newTheme = e.target.value;
-                document.documentElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-              });
-            })();
-          `
-        }} />
       </body>
     </html>
   );
