@@ -1,6 +1,82 @@
+/* Retro Theme - Base Styles */
+
+:root[data-theme="retro"] {
+  --retro-primary: #00ff00; /* Light green for primary text */
+  --retro-secondary: #00cc00; /* Slightly darker green for secondary text */
+  --retro-background: #000000; /* Black background */
+}
+
+/* Primary Text Style */
+[data-theme="retro"] .retro-primary {
+  color: var(--retro-primary);
+  font-family: "Courier New", monospace;
+}
+
+/* Secondary Text Style */
+[data-theme="retro"] .retro-secondary {
+  color: var(--retro-secondary);
+  font-family: "Courier New", monospace;
+}
+
+/* Background */
+[data-theme="retro"] body {
+  background-color: var(--retro-background);
+}
+
 /* Retro theme variables */
 [data-theme="retro"] {
-  /* TODO: Define retro theme variables */
+  --bg-primary: #000000;
+  --text-primary: #00ff00;
+  --text-secondary: #00cc00;
+  --border-color: #00ff00;
+}
+
+/* Apply retro theme colors and font */
+[data-theme="retro"] body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "Courier New", monospace;
+}
+
+/* Make all text the same size */
+[data-theme="retro"] h1,
+[data-theme="retro"] h2,
+[data-theme="retro"] h3,
+[data-theme="retro"] h4,
+[data-theme="retro"] h5,
+[data-theme="retro"] h6,
+[data-theme="retro"] p,
+[data-theme="retro"] li,
+[data-theme="retro"] .job,
+[data-theme="retro"] .job *,
+[data-theme="retro"] .job-duration,
+[data-theme="retro"] .job-location,
+[data-theme="retro"] .job-company {
+  font-size: 1rem;
+}
+
+/* Override text colors for specific elements */
+[data-theme="retro"] .job-duration,
+[data-theme="retro"] .job-location,
+[data-theme="retro"] .contact-label {
+  color: var(--text-secondary);
+}
+
+/* Override layout for skills */
+[data-theme="retro"] .skills-list,
+[data-theme="retro"] .skill-keywords {
+  display: block;
+}
+
+[data-theme="retro"] .skill-item {
+  border: none;
+}
+
+/* Theme selector */
+[data-theme="retro"] #theme-select {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
 }
 
 /* TODO: Implement retro theme styles */ 
