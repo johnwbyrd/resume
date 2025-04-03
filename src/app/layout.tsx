@@ -1,4 +1,3 @@
-import '@/styles/globals.scss';
 import { ReactNode } from 'react';
 import { ThemeProvider } from '@/themes/ThemeContext';
 
