@@ -4,18 +4,17 @@
   --retro-primary: #00ff00; /* Light green for primary text */
   --retro-secondary: #00cc00; /* Slightly darker green for secondary text */
   --retro-background: #000000; /* Black background */
+  --retro-font: "Courier New", monospace; /* Single source of truth for font */
 }
 
 /* Primary Text Style */
 [data-theme="retro"] .retro-primary {
   color: var(--retro-primary);
-  font-family: "Courier New", monospace;
 }
 
 /* Secondary Text Style */
 [data-theme="retro"] .retro-secondary {
   color: var(--retro-secondary);
-  font-family: "Courier New", monospace;
 }
 
 /* Background */
@@ -35,23 +34,11 @@
 [data-theme="retro"] body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: "Courier New", monospace;
+  font-family: var(--retro-font);
 }
 
 /* Make all text the same size */
-[data-theme="retro"] h1,
-[data-theme="retro"] h2,
-[data-theme="retro"] h3,
-[data-theme="retro"] h4,
-[data-theme="retro"] h5,
-[data-theme="retro"] h6,
-[data-theme="retro"] p,
-[data-theme="retro"] li,
-[data-theme="retro"] .job,
-[data-theme="retro"] .job *,
-[data-theme="retro"] .job-duration,
-[data-theme="retro"] .job-location,
-[data-theme="retro"] .job-company {
+[data-theme="retro"] .resume * {
   font-size: 1rem;
 }
 
