@@ -88,6 +88,38 @@ While the output is simple and performant, the development experience leverages 
    - Reduces CSS bundle size
    - Supports theme customization
 
+## Theme Architecture
+
+The project implements a sophisticated theme inheritance system using SCSS:
+
+1. **Explicit Theme Inheritance**:
+   - Base theme defines core variables and styles
+   - Retro theme inherits from and extends base theme
+   - C64 theme inherits from and extends retro theme
+   - Each theme explicitly imports its parent using SCSS `@import`
+
+2. **CSS Custom Properties for Inheritance**:
+   - Base theme establishes root variables
+   - Child themes inherit and override variables as needed
+   - Enables cascading of styles while maintaining explicit relationships
+   - Provides clear documentation of theme dependencies
+
+3. **Integration with Tailwind**:
+   - While Tailwind provides utility classes for rapid development
+   - Theme system provides semantic variables and inheritance
+   - This hybrid approach combines:
+     - Tailwind's utility-first workflow for components
+     - SCSS's powerful inheritance for theme organization
+     - CSS Custom Properties for runtime theme switching
+
+4. **Benefits Over Pure Tailwind**:
+   - More maintainable theme hierarchy
+   - Clearer relationships between themes
+   - Better separation of concerns:
+     - Tailwind for component-level styling
+     - SCSS for theme-level organization
+     - CSS Custom Properties for theme switching
+
 ## Conclusion
 
 This project demonstrates that modern web development tools can be used to create exceptionally performant websites. By focusing on:

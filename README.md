@@ -49,6 +49,21 @@ The resume data follows the [JSON Resume schema](https://jsonresume.org/), an in
   - Consistent styling across themes
   - Easy maintenance and updates
 
+### Theme System
+- **Explicit Theme Inheritance**:
+  - Uses SCSS for clear theme relationships
+  - Base theme → Retro theme → C64 theme inheritance chain
+  - Each theme explicitly imports and extends its parent
+- **CSS Custom Properties**:
+  - Base theme defines core variables
+  - Child themes inherit and override as needed
+  - Enables runtime theme switching without JavaScript overhead
+- **Hybrid Approach**:
+  - Combines Tailwind's utility classes with SCSS theme inheritance
+  - Tailwind for component-level styling
+  - SCSS for theme organization and inheritance
+  - CSS Custom Properties for dynamic theme switching
+
 ### Performance Optimization
 - Static site generation eliminates client-side rendering overhead
 - Minimal JavaScript footprint
