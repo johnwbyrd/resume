@@ -18,6 +18,14 @@ A high-performance, themeable resume website built with Next.js, TypeScript, and
   - Enhanced development experience with better IDE support
   - Runtime type checking for data validation
 
+## Documentation
+
+For more detailed information about this project, please refer to the following documents:
+
+- [Technical Rationale](doc/rationale.md) - Detailed explanation of the technical decisions, architecture, and performance optimizations
+- [Project Plan](doc/plan.md) - Overview of the project roadmap and development strategy
+- [Todo List](doc/todo.md) - Current tasks and future enhancements
+
 ## Technical Highlights
 
 ### Data Structure
