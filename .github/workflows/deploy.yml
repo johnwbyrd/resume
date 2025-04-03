@@ -35,10 +35,10 @@ jobs:
       
       - name: Deploy to Production
         if: github.ref == 'refs/heads/main'
-        uses: appleboy/scp-action@v0.1.7
+        uses: easing-themes/ssh-deploy@v5.1.0
         with:
-          host: ${{ secrets.PRODUCTION_HOST }}
-          username: ${{ secrets.PRODUCTION_USER }}
-          key: ${{ secrets.PRODUCTION_SSH_KEY }}
-          source: "out"
-          target: ${{ secrets.PRODUCTION_PATH }} 
+          REMOTE_HOST: ${{ secrets.PRODUCTION_HOST }}
+          REMOTE_USER: ${{ secrets.PRODUCTION_USER }}
+          SSH_PRIVATE_KEY: ${{ secrets.PRODUCTION_SSH_KEY }}
+          SOURCE: out/
+          TARGET: ${{ secrets.PRODUCTION_PATH }} 
