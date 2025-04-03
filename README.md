@@ -17,6 +17,11 @@ A high-performance, themeable resume website built with Next.js, TypeScript, and
   - Strong type safety throughout the application
   - Enhanced development experience with better IDE support
   - Runtime type checking for data validation
+- **Automated Deployment**:
+  - GitHub Actions workflow for continuous deployment
+  - Automatic deployment to staging and production environments
+  - Branch-based deployment strategy (develop → staging, main → production)
+  - Secure handling of deployment credentials via GitHub Secrets
 
 ## Documentation
 
@@ -50,6 +55,40 @@ The resume data follows the [JSON Resume schema](https://jsonresume.org/), an in
 - Optimized asset loading
 - Perfect Core Web Vitals scores
 
+### Deployment Strategy
+- **Continuous Deployment**: Changes are automatically deployed when pushed to the appropriate branch
+- **Environment Separation**: 
+  - Staging environment for testing and preview
+  - Production environment for the live site
+- **Secure Credentials**: 
+  - SSH keys stored as GitHub Secrets
+  - No hardcoded credentials in the codebase
+- **Simple Process**:
+  - Push to `develop` branch → Deploy to staging
+  - Push to `main` branch → Deploy to production
+
+### GitHub Secrets Configuration
+The deployment workflow requires the following secrets to be added to your GitHub repository:
+
+1. **Staging Environment**:
+   - `STAGING_HOST`: The hostname or IP address of the staging server
+   - `STAGING_USER`: The SSH username for the staging server
+   - `STAGING_SSH_KEY`: The private SSH key for authentication
+   - `STAGING_PATH`: The target directory path on the staging server
+
+2. **Production Environment**:
+   - `PRODUCTION_HOST`: The hostname or IP address of the production server
+   - `PRODUCTION_USER`: The SSH username for the production server
+   - `PRODUCTION_SSH_KEY`: The private SSH key for authentication
+   - `PRODUCTION_PATH`: The target directory path on the production server
+
+To add these secrets:
+1. Go to your GitHub repository
+2. Navigate to Settings → Secrets and Variables → Actions
+3. Click "New repository secret"
+4. Add each secret with its corresponding value
+5. Make sure to use the exact secret names as listed above
+
 ## Development
 
 ### Prerequisites
@@ -76,6 +115,7 @@ The resume data follows the [JSON Resume schema](https://jsonresume.org/), an in
 - `src/data` - JSON Resume data
 - `src/themes` - Theme configuration
 - `src/utils` - Utility functions
+- `.github/workflows` - GitHub Actions deployment workflows
 
 ## Features
 - Multiple theme support with semantic styling
@@ -83,3 +123,4 @@ The resume data follows the [JSON Resume schema](https://jsonresume.org/), an in
 - Print-friendly layout
 - TypeScript support
 - ESLint and Prettier integration
+- Automated deployment to staging and production
