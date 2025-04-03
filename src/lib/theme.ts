@@ -1,14 +1,27 @@
-export type Theme = 'simple-light' | 'simple-dark' | 'elegant' | 'retro' | 'print' | 'c64';
+export type Theme = 
+  | 'simple-light' 
+  | 'simple-dark' 
+  | 'elegant' 
+  | 'retro' 
+  | 'c64' 
+  | 'print';
 
-export const THEMES: Theme[] = ['simple-light', 'simple-dark', 'elegant', 'retro', 'print', 'c64'];
+export const THEMES: Theme[] = [
+  'simple-light',
+  'simple-dark',
+  'elegant',
+  'retro',
+  'c64',
+  'print'
+];
 
 export const THEME_LABELS: Record<Theme, string> = {
   'simple-light': 'Simple Light',
   'simple-dark': 'Simple Dark',
   'elegant': 'Elegant',
   'retro': 'Retro',
-  'print': 'Print',
-  'c64': 'Commodore 64'
+  'c64': 'Commodore 64',
+  'print': 'Print'
 };
 
 export function setTheme(theme: Theme): void {
