@@ -35,7 +35,7 @@ jobs:
       
       - name: Deploy to Production
         if: github.ref == 'refs/heads/main'
-        uses: easing-themes/ssh-deploy@v5.1.0
+        uses: easingthemes/ssh-deploy@v5.1.0
         with:
           REMOTE_HOST: ${{ secrets.PRODUCTION_HOST }}
           REMOTE_USER: ${{ secrets.PRODUCTION_USER }}
