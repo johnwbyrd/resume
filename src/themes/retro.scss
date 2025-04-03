@@ -16,22 +16,16 @@
   --retro-secondary: #00cc00; /* Slightly darker green for secondary text */
   --retro-background: #000000; /* Black background */
   --retro-font: "Courier New", monospace; /* Single source of truth for font */
-  
+  --retro-font-size: 1.25rem;
+
   // Theme variables that override base
   --bg-primary: var(--retro-background);
   --text-primary: var(--retro-primary);
   --text-secondary: var(--retro-secondary);
   --border-color: var(--retro-primary);
-}
-
-/* Primary Text Style */
-.retro-primary {
-  color: var(--retro-primary);
-}
-
-/* Secondary Text Style */
-.retro-secondary {
-  color: var(--retro-secondary);
+  
+  // Increased font size for better readability
+  --base-font-size: var(--retro-font-size);
 }
 
 /* Background */
@@ -40,11 +34,12 @@
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: var(--retro-font);
+    font-size: var(--base-font-size);
   }
   
   /* Make all text the same size */
   .resume * {
-    font-size: 1rem;
+    font-size: var(--base-font-size);
   }
   
   /* Override text colors for specific elements */
@@ -73,6 +68,6 @@
   
   /* Fix for name at the top of the page */
   .name {
-    font-size: 1rem; /* Same as all other text */
+    font-size: var(--base-font-size); /* Same as all other text */
   }
 } 

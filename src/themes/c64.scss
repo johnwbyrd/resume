@@ -8,7 +8,7 @@
   src: url('/fonts/c64/C64_Pro_Mono-STYLE.eot?#iefix') format('embedded-opentype'),
        url('/fonts/c64/C64_Pro_Mono-STYLE.woff2') format('woff2'),
        url('/fonts/c64/C64_Pro_Mono-STYLE.woff') format('woff'),
-       url('/fonts/c64/C64_Pro_Mono-STYLE.ttf') format('truetype'),
+       url('/fonts/c64/C64_Pro_Mono_STYLE.ttf') format('truetype'),
        url('/fonts/c64/C64_Pro_Mono_STYLE.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
@@ -70,11 +70,12 @@
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: var(--c64-font);
+    font-size: var(--retro-font-size);
   }
   
   /* Make all text the same size */
   .resume * {
-    font-size: 1rem;
+    font-size: var(--retro-font-size);
   }
   
   /* Override text colors for specific elements */
