@@ -1,141 +1,93 @@
-# Modern Resume Website
+# Modern Resume: Semantic HTML Meets Tailwind Efficiency
 
-A high-performance, themeable resume website built with Next.js, TypeScript, and Tailwind CSS. This project demonstrates modern web development practices with a focus on performance, maintainability, and semantic design.
+Ever feel torn between writing clean, semantic HTML and the speed of utility-first CSS like Tailwind? Yeah, us too. This project tackles that head-on, offering a way to build themeable, high-performance websites that are a joy to maintain.
 
-## Key Features
+**The gist:** Keep your components clutter-free with meaningful HTML, while still using Tailwind's awesome utilities – just do it neatly inside your SCSS.
 
-- **Industry-Standard Data Format**: Uses the widely-adopted JSON Resume schema for data structure, making it easy to import/export resume data and integrate with other tools
-- **Semantic Component Architecture**: 
-  - Components are structured around semantic meaning rather than visual presentation
-  - Clear separation between data structure and visual styling
-  - Flexible assignment of Tailwind classes through component props
-- **Static Site Generation**:
-  - Fully static output for maximum performance
-  - Zero JavaScript runtime overhead for core content
-  - Exceptionally fast page loads and perfect Lighthouse scores
-- **TypeScript Integration**:
-  - Strong type safety throughout the application
-  - Enhanced development experience with better IDE support
-  - Runtime type checking for data validation
-- **Automated Deployment**:
-  - GitHub Actions workflow for continuous deployment
-  - Automatic deployment to staging and production environments
-  - Branch-based deployment strategy (develop → staging, main → production)
-  - Secure handling of deployment credentials via GitHub Secrets
+## The Challenge: Clean Markup vs. Fast Styling
 
-## Documentation
+I love semantic HTML. It's accessible and understandable -- the Way The Web Was Designed(TM).
 
-For more detailed information about this project, please refer to the following documents:
+But Tailwind-style utility classes are just so darned fast to develop with!  
+Shoving dozens of utility classes directly into components, however, can lead to:
 
-- [Technical Rationale](doc/rationale.md) - Detailed explanation of the technical decisions, architecture, and performance optimizations
-- [Project Plan](doc/plan.md) - Overview of the project roadmap and development strategy
-- [Todo List](doc/todo.md) - Current tasks and future enhancements
+*   Markup that's hard to read and understand.
+*   Difficulty maintaining consistent styling across a large application.
+*   Themes becoming a tangled mess of conditional classes or complex JavaScript.
 
-## Technical Highlights
+You end up paying for the free lunch, however, when you are trying to figure out what the heck you meant when you wrote `<div class="p-4 bg-blue-500 text-white font-bold">...`.
 
-### Data Structure
-The resume data follows the [JSON Resume schema](https://jsonresume.org/), an industry standard that includes:
-- Basic information
-- Work experience
-- Education
-- Skills
-- Projects
-- Volunteer work
+So, how do we have our cake and eat it too?
 
-### Component Architecture
-- Semantic component structure separates content meaning from presentation
-- Tailwind classes are assigned through props, allowing for:
-  - Theme customization without component modification
-  - Consistent styling across themes
-  - Easy maintenance and updates
+## Our Approach: Centralized Styling with `@apply`
 
-### Theme System
-- **Explicit Theme Inheritance**:
-  - Uses SCSS for clear theme relationships
-  - Base theme → Retro theme → C64 theme inheritance chain
-  - Each theme explicitly imports and extends its parent
-- **CSS Custom Properties**:
-  - Base theme defines core variables
-  - Child themes inherit and override as needed
-  - Enables runtime theme switching without JavaScript overhead
-- **Hybrid Approach**:
-  - Combines Tailwind's utility classes with SCSS theme inheritance
-  - Tailwind for component-level styling
-  - SCSS for theme organization and inheritance
-  - CSS Custom Properties for dynamic theme switching
+I decided to combine tried-and-true CSS structure with modern tooling:
 
-### Performance Optimization
-- Static site generation eliminates client-side rendering overhead
-- Minimal JavaScript footprint
-- Optimized asset loading
-- Perfect Core Web Vitals scores
+1.  **Write Semantic HTML (and *only* semantic HTML) in Components:** Your TSX looks clean, focusing on structure and meaning: `<article className="work-item">` or `<h2 className="section-title">`.
+2.  **Organize Styles with SCSS:** Use SCSS for its strengths – importing files (`base.scss`, `simple-theme.scss`, etc.) and defining styles against those semantic selectors (`.work-item { ... }`).
+3.  **Use Tailwind Utilities via `@apply` (Inside SCSS!):** This is the key! Instead of putting utilities in the HTML, apply them within your SCSS rules:
+    ```scss
+    // In your theme's SCSS file...
+    .work-item {
+      @apply mb-8 pt-4 border-t; // Use Tailwind utilities here!
+      border-color: var(--border-color); // Use theme variables
+    }
+    ```
+4.  **Theme with CSS Variables:** Define theme-specific looks (colors, fonts) using CSS Custom Properties scoped with `[data-theme="..."]`. A tiny bit of JavaScript swaps the `data-theme` attribute, and *poof* – instant theme change, no style recalculation needed.
 
-### Deployment Strategy
-- **Continuous Deployment**: Changes are automatically deployed when pushed to the appropriate branch
-- **Environment Separation**: 
-  - Staging environment for testing and preview
-  - Production environment for the live site
-- **Secure Credentials**: 
-  - SSH keys stored as GitHub Secrets
-  - No hardcoded credentials in the codebase
-- **Simple Process**:
-  - Push to `develop` branch → Deploy to staging
-  - Push to `main` branch → Deploy to production
+**Why does this rock?**
 
-### GitHub Secrets Configuration
-The deployment workflow requires the following secrets to be added to your GitHub repository:
+*   **For Developers:** Your components stay squeaky clean. Styling logic lives where it belongs – in the stylesheets. Debugging is simpler. You still get to use the Tailwind utilities you know and love.
+*   **For Managers:** This pattern encourages maintainable code. Consistency is baked in. It's easier for new devs to understand the structure vs. deciphering a million utility classes inline. Plus, it inherently promotes accessible markup.
 
-1. **Staging Environment**:
-   - `STAGING_HOST`: The hostname or IP address of the staging server
-   - `STAGING_USER`: The SSH username for the staging server
-   - `STAGING_SSH_KEY`: The private SSH key for authentication
-   - `STAGING_PATH`: The target directory path on the staging server
+## Key Benefits & Features
 
-2. **Production Environment**:
-   - `PRODUCTION_HOST`: The hostname or IP address of the production server
-   - `PRODUCTION_USER`: The SSH username for the production server
-   - `PRODUCTION_SSH_KEY`: The private SSH key for authentication
-   - `PRODUCTION_PATH`: The target directory path on the production server
+This approach leads to:
 
-To add these secrets:
-1. Go to your GitHub repository
-2. Navigate to Settings → Secrets and Variables → Actions
-3. Click "New repository secret"
-4. Add each secret with its corresponding value
-5. Make sure to use the exact secret names as listed above
+*   ✅ **Truly Semantic Markup:** Readable, accessible, and meaningful HTML.
+*   ✅ **Maintainable Styling:** Centralized styles in SCSS, easy to update and scale.
+*   ✅ **Efficient Theming:** CSS Variables + simple JS = instant theme swaps.
+*   ✅ **Absurdly Fast Performance:** Built with Next.js static export for near-instant loads.
+*   ✅ **Developer Velocity:** Get the speed of Tailwind without trashing your HTML.
+*   ✅ **Standard Data:** Uses the common JSON Resume schema.
 
-## Development
+## See it in Action!
+
+*(Placeholder: Consider adding a GIF or link to a live demo showing theme switching here!)*
+
+## Learn More & Dive Deeper
+
+Want the nitty-gritty technical details?
+
+*   **[Technical Rationale](doc/rationale.md):** Explains *why* I chose this specific `@apply` strategy, how the build process works, and the full theme system details.
+*   **[Todo List](doc/todo.md):** See what's next for the project.
+*   **[Deployment Guide](doc/deployment.md):** Information on the automated deployment workflow and required configuration.
+
+## Getting Started
 
 ### Prerequisites
-- Node.js (v18 or later)
-- npm or yarn or pnpm or bun
-- VSCode (recommended)
+
+*   Node.js (v18 or later)
+*   npm / yarn / pnpm / bun
 
 ### Setup
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+
+1.  Clone the repository
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
 
 ### Available Scripts
-- `npm run dev` - Start development server with Turbopack
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
 
-## Project Structure
-- `src/app` - Next.js app router pages
-- `src/components` - React components
-- `src/data` - JSON Resume data
-- `src/themes` - Theme configuration
-- `src/utils` - Utility functions
-- `.github/workflows` - GitHub Actions deployment workflows
+*   `npm run dev` - Start development server
+*   `npm run build` - Build for production (static export)
+*   `npm run start` - Serve the built static site (requires `serve` package or similar)
+*   `npm run lint` - Run ESLint
 
-## Features
-- Multiple theme support with semantic styling
-- Responsive design
-- Print-friendly layout
-- TypeScript support
-- ESLint and Prettier integration
-- Automated deployment to staging and production
+## Technical Stack Overview
+
+*   **Framework:** Next.js (App Router, Static Export)
+*   **Language:** TypeScript
+*   **Styling:** SCSS, Tailwind CSS, CSS Custom Properties
+*   **Data:** JSON Resume schema

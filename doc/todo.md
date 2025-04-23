@@ -1,70 +1,64 @@
-# todo
+# Todo / Future Enhancements
 
-1. Theme System Enhancement
-   - Add semantic classes for remaining resume sections (Work, Education, Skills, Projects, Volunteer)
-   - Define appropriate Tailwind utilities for each section using `@apply`
-   - Ensure consistent spacing and typography across all sections
-   - Consider adding hover states and transitions for interactive elements
+This document lists planned enhancements and areas for future work, reflecting the current architecture and goals.
 
-2. Theme Color Palette Expansion
-   - Define additional CSS variables for:
-     - Secondary text colors
-     - Background colors for different sections
-     - Border colors for dividers
-     - Link colors
-     - Accent colors for important information
-   - Update both simple-light and simple-dark themes with these new variables
+## Feature Implementation
 
-3. Layout Improvements
-   - Review and enhance the container classes
-   - Add responsive breakpoints for different screen sizes
-   - Consider adding max-width constraints for better readability
-   - Ensure proper spacing between sections
+1.  **Implement Elegant Theme:**
+    *   Design and implement styles for the `elegant` theme in `src/themes/elegant.scss`.
+    *   Define appropriate CSS variables and apply styles using semantic classes and `@apply`.
+    *   Consider typography, spacing, and subtle color accents.
 
-4. Accessibility Enhancements
-   - Add proper ARIA labels to the theme selector
-   - Ensure sufficient color contrast in both themes
-   - Add focus states for interactive elements
-   - Consider adding a reduced motion option for animations
+2.  **Implement Print Theme:**
+    *   Design and implement styles for the `print` theme in `src/themes/print.scss`.
+    *   Focus on optimizing for physical paper output (page breaks, printer-friendly styles, remove unnecessary elements like theme switcher).
 
-5. Print Theme Optimization
-   - Implement the print theme CSS variables
-   - Add print-specific styles for better paper output
-   - Handle page breaks appropriately
-   - Remove unnecessary elements in print view
+3.  **(Optional) PDF Generation:**
+    *   Investigate and implement a mechanism to generate a PDF version of the resume.
+    *   Options might include client-side libraries (e.g., `html2pdf.js`, `jsPDF`) or potentially a serverless function if static export limits client-side options.
+    *   Ensure consistent formatting with the web version (perhaps based on the `print` theme).
 
-6. Documentation
-   - Document the theme system architecture
-   - Create a style guide for the semantic classes
-   - Add comments explaining the CSS variable usage
-   - Document the theme switching mechanism
+4.  **(Optional) Google Analytics Integration:**
+    *   Configure GA4 integration if desired.
+    *   Track page views and potentially theme switching events.
 
-7. Testing
-   - Test theme switching across all sections
-   - Verify theme persistence across page reloads
-   - Test responsive behavior with different themes
-   - Verify print layout with different themes
+## Theme System & Styling Refinements
 
-8. Performance Optimization
-   - Review CSS bundle size
-   - Consider lazy loading non-critical styles
-   - Optimize theme switching performance
-   - Ensure smooth transitions between themes
+5.  **Theme Palette Expansion:**
+    *   Define additional shared CSS variables (e.g., `--color-accent`, `--color-link-hover`, `--bg-secondary`) in `base.scss` or theme files as appropriate.
+    *   Update existing themes (`simple`, `retro`, `c64`) to utilize new variables where applicable.
 
-9. Browser Compatibility
-   - Test theme switching in different browsers
-   - Verify CSS variable support
-   - Check localStorage behavior
-   - Test fallback behavior for older browsers
+6.  **Review Semantic Class Coverage:**
+    *   Ensure all logical sections and elements within the resume components have appropriate semantic class names applied.
+    *   Verify that corresponding styles are defined in the theme SCSS files.
 
-10. Code Organization
-    - Consider splitting theme styles into separate files
-    - Organize semantic classes by section
-    - Create a clear hierarchy for CSS specificity
-    - Document any known limitations or edge cases
+7.  **Theme Switching Enhancement:**
+    *   Consider implementing initial theme detection based on user's system preference (`prefers-color-scheme`) before falling back to localStorage or default.
 
-Each of these steps should maintain our current approach of:
-- Using semantic class names in TSX components
-- Leveraging Tailwind utilities through `@apply`
-- Using CSS variables for theming
-- Keeping the vanilla JavaScript theme switching mechanism
+## General Improvements
+
+8.  **Accessibility Review:**
+    *   Conduct a thorough accessibility audit (WCAG guidelines).
+    *   Verify sufficient color contrast across all implemented themes.
+    *   Ensure proper ARIA attributes are used where necessary (e.g., theme selector).
+    *   Test keyboard navigation thoroughly.
+    *   Check heading structure and semantic HTML usage.
+
+9.  **Cross-Browser/Device Testing:**
+    *   Test appearance and functionality across major browsers (Chrome, Firefox, Safari, Edge).
+    *   Validate responsive behavior on various screen sizes (mobile, tablet, desktop).
+    *   Test theme switching consistency across browsers.
+
+10. **Performance Review:**
+    *   Run Lighthouse audits periodically.
+    *   Analyze CSS bundle size; consider potential optimizations if needed (though likely minimal impact for this project size).
+
+11. **Advanced SEO:**
+    *   Review and potentially implement `Person` schema.org markup for enhanced SEO.
+    *   Ensure all metadata and OpenGraph tags are optimal.
+
+12. **Code Organization:**
+    *   Consider if splitting theme SCSS files further (e.g., by section) would improve maintainability as themes grow.
+
+13. **Documentation Update (Ongoing):**
+    *   Keep `README.md` and `doc/rationale.md` updated as the project evolves. (Consider this task complete for now after we rewrite them).

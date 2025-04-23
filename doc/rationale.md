@@ -1,138 +1,71 @@
 # Technical Rationale
 
-## Data Structure and Schema
+This document explains the key architectural decisions behind this resume website project, particularly focusing on the styling and theming strategy.
 
-The project uses the [JSON Resume schema](https://jsonresume.org/) as its data foundation. This decision was made for several reasons:
+## Core Goals
 
-1. **Industry Standard**: The JSON Resume schema is widely adopted and well-documented, making it easy to:
-   - Import data from other resume tools
-   - Export data to other formats
-   - Integrate with other services
-   - Share and validate resume data
+The primary objectives driving the technical choices were:
 
-2. **Structured Data**: The schema provides a clear, hierarchical structure that:
-   - Separates content from presentation
-   - Makes data validation straightforward
-   - Enables easy data transformation
-   - Supports internationalization
+1.  **Semantic HTML:** Ensure the underlying HTML structure is meaningful, accessible, and independent of specific visual presentation.
+2.  **Themeability:** Allow easy switching between distinct visual themes (color palettes, typography, spacing) without altering the core content or structure.
+3.  **Performance:** Deliver a fast-loading experience through static site generation and optimized assets.
+4.  **Maintainability:** Create a codebase that is easy to understand, modify, and extend.
 
-## Semantic Component Architecture
+## Styling Philosophy: Semantic HTML with SCSS and Tailwind (@apply)
 
-The component architecture emphasizes semantic meaning over visual presentation:
+A central decision was to prioritize **semantic HTML** structure within the React (TSX) components. Instead of embedding styling logic directly into the markup using utility classes (like `className="text-lg font-bold mb-4"`), components use semantic class names that describe the *content's purpose* (e.g., `className="job-title"`, `className="work-item"`).
 
-1. **Component Structure**:
-   - Components are named and organized by their semantic purpose (e.g., `Work`, `Education`, `Skills`)
-   - Each component represents a logical section of the resume
-   - Components are independent and self-contained
+This approach offers several advantages:
 
-2. **Styling Approach**:
-   - Tailwind classes are assigned through props rather than hardcoded
-   - This enables:
-     - Theme customization without component modification
-     - Consistent styling across different themes
-     - Easy maintenance and updates
-     - Clear separation of concerns
+*   **Readability:** The TSX markup remains clean and focused on structure.
+*   **Accessibility:** Semantic HTML is inherently more accessible to assistive technologies.
+*   **Maintainability:** Changes to styling are centralized in the CSS/SCSS files, not scattered across components.
+*   **Separation of Concerns:** Structure (HTML/TSX) is clearly separated from presentation (CSS/SCSS).
 
-3. **Type Safety**:
-   - TypeScript interfaces define the expected data structure
-   - Props are strongly typed
-   - Runtime type checking validates data
+However, we still wanted to leverage the power and consistency of a utility-class system like Tailwind CSS for defining visual styles (spacing, typography, layout). To achieve this *without* sacrificing semantic HTML, we adopted a hybrid approach using SCSS:
 
-## Performance Optimization
+1.  **SCSS for Structure and Theming:**
+    *   **Organization:** SCSS (`@import`) is used to structure the stylesheets, importing a `base.scss` file and then theme-specific files (`simple.scss`, `retro.scss`, etc.) via `main.scss`.
+    *   **Theme Scoping:** Each theme's styles are defined within SCSS, primarily using **CSS Custom Properties (Variables)** scoped to a `[data-theme="theme-name"]` attribute selector (e.g., `[data-theme="simple-light"] { --bg-primary: #fff; }`). This is the core mechanism enabling theme switching.
+    *   **Semantic Selectors:** SCSS rules target the semantic class names defined in the TSX components (e.g., `.job-title { ... }`, `.work-item { ... }`).
 
-The project achieves exceptional performance through several key strategies:
+2.  **Tailwind via `@apply` for Implementation:**
+    *   Within the SCSS rules for semantic selectors, Tailwind's `@apply` directive is used to apply the desired utility classes. For example:
+        ```scss
+        // src/themes/simple.scss
+        .job-company {
+          @apply text-lg font-semibold; // Apply Tailwind utilities
+        }
 
-1. **Static Site Generation**:
-   - Next.js's static export feature generates pure HTML/CSS/JS
-   - No server-side rendering at runtime
-   - No client-side hydration needed for core content
-   - Perfect Core Web Vitals scores
+        .work-item {
+          @apply mb-8; // Apply Tailwind spacing
+          border-bottom: 1px solid var(--border-color); // Use theme variable
+        }
+        ```
+    *   This allows us to use Tailwind's design system (spacing scale, font sizes, etc.) for consistency while keeping the styling logic encapsulated within the SCSS files, tied to semantic selectors.
 
-2. **Minimal JavaScript**:
-   - Core content is pure HTML and CSS
-   - JavaScript is only used for theme switching
-   - No unnecessary client-side computation
-   - No framework overhead for static content
+3.  **Separation of `@tailwind` Directives:**
+    *   The core `@tailwind base;`, `@tailwind components;`, and `@tailwind utilities;` directives are placed in a separate, standalone `src/styles/globals.css` file.
+    *   This file is imported *before* `src/themes/main.scss` in the Next.js layout (`src/app/layout.tsx`).
+    *   **Reasoning:** This separation is crucial due to the CSS build process. Placing `@apply` within SCSS requires the Tailwind utilities to be processed *after* the SCSS rules are defined. If `@tailwind utilities` were in the same SCSS file or imported *after* the rules using `@apply`, the build might fail or produce incorrect CSS because the utilities wouldn't be available when `@apply` needs them. Separating them ensures Tailwind's base styles and utilities are generated first, making them available for `@apply` within the theme SCSS files.
 
-3. **Optimized Assets**:
-   - CSS is minified and optimized
-   - Images are optimized at build time
-   - No unnecessary dependencies
-   - Small bundle size
+4.  **CSS Variables for Dynamic Switching:**
+    *   The themes define their specific look primarily through CSS Custom Properties (e.g., `--bg-primary`, `--text-primary`, `--border-color`).
+    *   SCSS rules consume these variables (`background-color: var(--bg-primary);`).
+    *   A simple client-side script (`ThemeSwitcher` component, likely in `Layout.tsx` or similar) changes the `data-theme` attribute on the `<html>` or `<body>` element. This instantly activates the corresponding CSS variable scope, changing the site's appearance without needing to reload styles or apply new classes via JavaScript.
 
-4. **Modern Browser Features**:
-   - Uses modern CSS features for layout
-   - Leverages browser-native capabilities
-   - No polyfills needed
-   - Progressive enhancement
+## Performance Considerations
+
+*   **Static Export:** The site uses Next.js's static export feature (`output: 'export'`). This generates plain HTML, CSS, and minimal JavaScript files, resulting in extremely fast load times and eliminating server-side rendering overhead.
+*   **Minimal JavaScript:** The core resume content requires zero JavaScript to render. JS is only used for the non-essential theme-switching enhancement.
 
 ## Development Experience
 
-While the output is simple and performant, the development experience leverages modern tools:
-
-1. **TypeScript**:
-   - Provides strong type safety
-   - Enhances IDE support
-   - Catches errors at compile time
-   - Improves code maintainability
-
-2. **Next.js**:
-   - Provides excellent development tools
-   - Enables fast refresh
-   - Offers built-in optimizations
-   - Supports modern React features
-
-3. **Tailwind CSS**:
-   - Enables rapid styling
-   - Maintains consistency
-   - Reduces CSS bundle size
-   - Supports theme customization
-
-## Theme Architecture
-
-The project implements a sophisticated theme inheritance system using SCSS:
-
-1. **Explicit Theme Inheritance**:
-   - Base theme defines core variables and styles
-   - Retro theme inherits from and extends base theme
-   - C64 theme inherits from and extends retro theme
-   - Each theme explicitly imports its parent using SCSS `@import`
-
-2. **CSS Custom Properties for Inheritance**:
-   - Base theme establishes root variables
-   - Child themes inherit and override variables as needed
-   - Enables cascading of styles while maintaining explicit relationships
-   - Provides clear documentation of theme dependencies
-
-3. **Integration with Tailwind**:
-   - While Tailwind provides utility classes for rapid development
-   - Theme system provides semantic variables and inheritance
-   - This hybrid approach combines:
-     - Tailwind's utility-first workflow for components
-     - SCSS's powerful inheritance for theme organization
-     - CSS Custom Properties for runtime theme switching
-
-4. **Benefits Over Pure Tailwind**:
-   - More maintainable theme hierarchy
-   - Clearer relationships between themes
-   - Better separation of concerns:
-     - Tailwind for component-level styling
-     - SCSS for theme-level organization
-     - CSS Custom Properties for theme switching
+*   **TypeScript:** Provides type safety for component props and resume data.
+*   **SCSS:** Offers features like nesting and imports for better CSS organization.
+*   **Tailwind:** Speeds up the definition of styles via `@apply`.
+*   **IDE Configuration:** A known trade-off of using `@apply` within SCSS is that some IDE linters or language servers might show warnings for the `@apply` directive as an "unknown at-rule". This can usually be resolved by configuring the IDE or linter (e.g., setting `scss.lint.unknownAtRules: "ignore"` in VS Code's settings or using Stylelint with appropriate configuration). This should be noted in the project's README.
 
 ## Conclusion
 
-This project demonstrates that modern web development tools can be used to create exceptionally performant websites. By focusing on:
-
-1. Semantic structure
-2. Static generation
-3. Minimal JavaScript
-4. Type safety
-
-We achieve a website that:
-- Loads instantly
-- Works without JavaScript
-- Is easy to maintain
-- Provides a great development experience
-
-The end result is a resume website that combines the best of modern development practices with the simplicity and performance of traditional web technologies. 
+This architecture prioritizes clean, semantic HTML while leveraging the strengths of both SCSS (organization, theming variables) and Tailwind CSS (utility classes via `@apply`). By carefully managing the build process and using CSS Custom Properties, it achieves efficient theme switching for a performant, maintainable, and accessible static website. 
