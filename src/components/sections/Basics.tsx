@@ -11,11 +11,23 @@ export function Basics({ resumeData }: BasicsProps) {
 
   return (
     <section className="basics">
-      <h1>{basics.name}</h1>
-      <h2>{basics.label}</h2>
-      
-      <div className="basics-summary">
-        <p>{basics.summary}</p>
+      <div className="basics-content">
+        <h1>{basics.name}</h1>
+        <h2>{basics.label}</h2>
+        
+        <div className="basics-summary">
+          <p>{basics.summary}</p>
+        </div>
+        
+        {basics.highlights && basics.highlights.length > 0 && (
+          <div className="basics-highlights">
+            <ul>
+              {basics.highlights.map((highlight: string, index: number) => (
+                <li key={index}>{highlight}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       
       <div className="basics-contact">

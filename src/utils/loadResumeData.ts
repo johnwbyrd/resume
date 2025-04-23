@@ -19,6 +19,7 @@ export interface ResumeData {
       username?: string;
     }>;
     summary?: string;
+    highlights?: string[];
   };
   work?: Array<{
     name?: string;
