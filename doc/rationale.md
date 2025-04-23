@@ -22,7 +22,7 @@ This approach offers several advantages:
 *   **Maintainability:** Changes to styling are centralized in the CSS/SCSS files, not scattered across components.
 *   **Separation of Concerns:** Structure (HTML/TSX) is clearly separated from presentation (CSS/SCSS).
 
-However, we still wanted to leverage the power and consistency of a utility-class system like Tailwind CSS for defining visual styles (spacing, typography, layout). To achieve this *without* sacrificing semantic HTML, we adopted a hybrid approach using SCSS:
+However, I still wanted to leverage the power and consistency of a utility-class system like Tailwind CSS for defining visual styles (spacing, typography, layout). To achieve this *without* sacrificing semantic HTML, I adopted a hybrid approach using SCSS:
 
 1.  **SCSS for Structure and Theming:**
     *   **Organization:** SCSS (`@import`) is used to structure the stylesheets, importing a `base.scss` file and then theme-specific files (`simple.scss`, `retro.scss`, etc.) via `main.scss`.
