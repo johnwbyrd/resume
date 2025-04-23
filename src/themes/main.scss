@@ -1,9 +1,9 @@
-// Import base styles
-@import './base.scss';
+// Use base styles
+@use './base'; // Extension is optional with @use
 
-// Import theme files
-@import './simple.scss';
-@import './elegant.scss';
-@import './retro.scss';
-@import './c64.scss';
-@import './print.scss'; 
+// Use theme files
+@use './simple';
+@use './elegant';
+@use './retro';
+@use './c64';
+@use './print'; 
