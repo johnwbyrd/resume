@@ -75,11 +75,18 @@
     color: var(--text-secondary);
   }
 
-  /* Theme selector */
-  #theme-select {
+  /* Theme picker */
+  .theme-picker-button,
+  .theme-picker-menu {
     background-color: var(--c64-dark-grey);
     color: var(--c64-light-grey);
     border-color: var(--c64-light-blue);
+  }
+
+  .theme-picker-option:hover,
+  .theme-picker-option:focus {
+    background-color: var(--c64-light-blue);
+    color: var(--c64-white);
   }
   
   /* C64-specific styling */

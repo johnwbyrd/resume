@@ -62,10 +62,15 @@ body {
   color: var(--text-secondary);
 }
 
-/* Theme selector */
-#theme-select {
-  @apply px-2 py-1 rounded border;
+/* Theme picker */
+.theme-picker-button,
+.theme-picker-menu {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   border-color: var(--border-color);
+}
+
+.theme-picker-option:hover,
+.theme-picker-option:focus {
+  background-color: var(--border-color);
 }

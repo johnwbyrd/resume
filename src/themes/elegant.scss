@@ -141,12 +141,19 @@
     font-style: italic;
   }
 
-  /* Theme selector — quiet, blends with page */
-  #theme-select {
+  /* Theme picker — quiet, blends with page */
+  .theme-picker-button,
+  .theme-picker-menu {
     background-color: var(--bg-primary);
     color: var(--text-secondary);
     border-color: var(--border-color);
     font-family: var(--font-serif);
     font-style: italic;
+  }
+
+  .theme-picker-option:hover,
+  .theme-picker-option:focus {
+    background-color: var(--border-color);
+    color: var(--text-primary);
   }
 }
