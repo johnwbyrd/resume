@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="simple-light" suppressHydrationWarning>
+    <html lang="en">
       <head>
         <script dangerouslySetInnerHTML={{
           __html: `
@@ -39,6 +39,39 @@ export default function RootLayout({
                 initial = 'simple-light';
               }
               document.documentElement.setAttribute('data-theme', initial);
+
+              document.addEventListener('DOMContentLoaded', function() {
+                var picker = document.querySelector('.theme-picker');
+                if (!picker) return;
+                var button = picker.querySelector('.theme-picker-button');
+                var menu = picker.querySelector('.theme-picker-menu');
+
+                function setOpen(open) {
+                  picker.setAttribute('data-open', open ? 'true' : 'false');
+                  button.setAttribute('aria-expanded', open ? 'true' : 'false');
+                }
+
+                button.addEventListener('click', function() {
+                  setOpen(picker.getAttribute('data-open') !== 'true');
+                });
+
+                menu.querySelectorAll('[data-theme-value]').forEach(function(opt) {
+                  opt.addEventListener('click', function() {
+                    var v = opt.getAttribute('data-theme-value');
+                    document.documentElement.setAttribute('data-theme', v);
+                    try { localStorage.setItem('theme', v); } catch (e) {}
+                    setOpen(false);
+                  });
+                });
+
+                document.addEventListener('mousedown', function(e) {
+                  if (!picker.contains(e.target)) setOpen(false);
+                });
+
+                document.addEventListener('keydown', function(e) {
+                  if (e.key === 'Escape') setOpen(false);
+                });
+              });
             })();
           `
         }} />

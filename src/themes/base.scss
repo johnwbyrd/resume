@@ -122,6 +122,7 @@ a {
 }
 
 .theme-picker-menu {
+  display: none;
   position: absolute;
   top: calc(100% + 0.25rem);
   right: 0;
@@ -133,6 +134,22 @@ a {
   border-radius: 0.25rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   z-index: 60;
+}
+
+.theme-picker[data-open="true"] .theme-picker-menu {
+  display: block;
+}
+
+/* Button shows only the label matching the current [data-theme] on <html>.
+   All labels are in the DOM so no JS is needed to swap them on first paint. */
+.theme-picker-label {
+  display: none;
+}
+
+@each $theme in ('simple-light', 'simple-dark', 'elegant', 'retro', 'c64') {
+  [data-theme="#{$theme}"] .theme-picker-label[data-theme-label="#{$theme}"] {
+    display: inline;
+  }
 }
 
 .theme-picker-menu li {
