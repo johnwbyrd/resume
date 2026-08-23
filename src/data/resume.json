@@ -83,20 +83,6 @@
       ]
     },
     {
-      "name": "Sega.com",
-      "position": "Principal Engineer",
-      "url": "https://www.sega.com/",
-      "location": "San Francisco, CA",
-      "startDate": "2003-03",
-      "endDate": "2003-09",
-      "summary": "Created the SNAP SDK for online console game development.",
-      "highlights": [
-        "Created the SNAP SDK for online console game development",
-        "Devised and managed product schedule",
-        "Rewrote online code for XBox and Gamecube, and assisted with PS2 version"
-      ]
-    },
-    {
       "name": "Electronic Arts",
       "position": "Senior Project Manager",
       "url": "https://www.ea.com/",
@@ -126,21 +112,6 @@
         "Built long-term relationships with developers and partner companies",
         "Coached and helped grow engineers and non-technical employees",
         "Full-time staff of thirteen"
-      ]
-    },
-    {
-      "name": "The 3DO Company",
-      "position": "Senior Engineer",
-      "url": "",
-      "location": "Redwood City, CA",
-      "startDate": "1994-02",
-      "endDate": "1997-08",
-      "summary": "Taught courses at 3DO University and developed demo programs.",
-      "highlights": [
-        "Wrote and taught courses at 3DO University, including the first-ever professional curriculum for game audio",
-        "Wrote code and provided other technical assistance for Windows, M2 and 3DO development teams",
-        "Developed demo programs and content for 3DO system software",
-        "Wrote installers for multiple PC games"
       ]
     }
   ],

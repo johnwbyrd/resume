@@ -55,6 +55,13 @@ body {
   @apply mt-2;
 }
 
+/* Footer */
+.footer {
+  @apply mt-12 pt-4 pb-6 text-sm text-center border-t;
+  border-color: var(--border-color);
+  color: var(--text-secondary, #6b7280);
+}
+
 /* Theme selector */
 #theme-select {
   @apply px-2 py-1 rounded border;
