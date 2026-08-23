@@ -35,10 +35,6 @@ export interface ResumeData {
     area?: string;
     studyType?: string;
   }>;
-  skills?: Array<{
-    name?: string;
-    keywords?: string[];
-  }>;
   projects?: Array<{
     name?: string;
     description?: string;

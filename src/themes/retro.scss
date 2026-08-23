@@ -33,21 +33,10 @@
   
   /* Override text colors for specific elements */
   .job-duration,
-  .job-location,
-  .contact-label {
+  .job-location {
     color: var(--text-secondary);
   }
-  
-  /* Override layout for skills */
-  .skills-list,
-  .skill-keywords {
-    display: block;
-  }
-  
-  .skill-item {
-    border: none;
-  }
-  
+
   /* Theme selector */
   #theme-select {
     background-color: var(--bg-primary);

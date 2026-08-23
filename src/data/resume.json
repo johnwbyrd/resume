@@ -12,37 +12,25 @@
     },
     "profiles": [
       {
+        "network": "GitHub",
+        "url": "https://github.com/johnwbyrd",
+        "username": "johnwbyrd"
+      },
+      {
         "network": "Quora",
         "url": "https://qr.ae/TWvVXF",
         "username": "John Byrd"
       }
     ],
-    "summary": "Experienced software executive with deep technical knowledge in audio AI and extensive experience managing and delivering software projects. Social media leader with over 17k natural followers and proven talent for building and managing engineering teams.",
+    "summary": "Software executive with an active AI portfolio: audio ML for real-time systems, LLM tooling for code understanding, and transformer internals. Decades leading engineering teams and shipping software, from the Sega Dreamcast SDK to recent audio-AI products. Currently building open-source AI tooling.",
     "highlights": [
       "Real-world experience managing and delivering software projects",
-      "Deep technical knowledge of software development, AI patents granted",
-      "Social media educator and leader with over 20k followers",
-      "Proven passion and talent for managing engineering teams"
+      "Recent open-source AI work: audio ML for real-time systems, LLM code-understanding tooling, annotated transformer implementations",
+      "Deep technical foundation: AI patents granted; contributions to LLVM, cryptography, and low-level systems",
+      "Proven passion and talent for building and mentoring engineering teams"
     ]
   },
   "work": [
-    {
-      "name": "Sonance",
-      "position": "Director of Software",
-      "url": "https://www.sonance.com/",
-      "location": "San Clemente, CA",
-      "startDate": "2021-08",
-      "endDate": "present",
-      "summary": "Led internal software development for novel audio products.",
-      "highlights": [
-        "Created, hired and managed internal software development team",
-        "Conceived, built, and proved new software platform for novel audio products",
-        "Established Agile development processes with highly distributed development teams",
-        "Built source code repository and CI/CD test systems",
-        "Delivered new software features on a monthly cadence",
-        "Managed and mentored software engineers of widely varying skill levels and abilities"
-      ]
-    },
     {
       "name": "Gigantic Software",
       "position": "Chief Executive Officer",
@@ -59,6 +47,23 @@
         "Filed patents on new designs",
         "Gave multiple presentations at GDC",
         "Invited speaker at USC's Interactive Media and Games Division and AES"
+      ]
+    },
+    {
+      "name": "Sonance",
+      "position": "Director of Software",
+      "url": "https://www.sonance.com/",
+      "location": "San Clemente, CA",
+      "startDate": "2021-08",
+      "endDate": "2025-05",
+      "summary": "Led internal software development for novel audio products.",
+      "highlights": [
+        "Created, hired and managed internal software development team",
+        "Conceived, built, and proved new software platform for novel audio products",
+        "Established Agile development processes with highly distributed development teams",
+        "Built source code repository and CI/CD test systems",
+        "Delivered new software features on a monthly cadence",
+        "Managed and mentored software engineers of widely varying skill levels and abilities"
       ]
     },
     {
@@ -147,27 +152,24 @@
       "studyType": "BA"
     }
   ],
-  "skills": [
-    {
-      "name": "Software Project Management",
-      "keywords": ["Agile", "Project Delivery", "Team Management"]
-    },
-    {
-      "name": "Audio Technology",
-      "keywords": ["Audio AI", "DSP", "Audio Middleware"]
-    },
-    {
-      "name": "Leadership",
-      "keywords": ["Team Building", "Mentoring", "Engineering Management"]
-    },
-    {
-      "name": "Software Development",
-      "keywords": ["CI/CD", "Source Control", "Software Architecture"]
-    }
-  ],
   "publications": [],
   "awards": [],
   "projects": [
+    {
+      "name": "comprehend",
+      "description": "A methodology for making AI assistants understand code bases via a measure-first workflow",
+      "url": "https://github.com/johnwbyrd/comprehend"
+    },
+    {
+      "name": "delay-concealment",
+      "description": "Adaptive jitter-buffer depth recommender for real-time audio using spliced empirical/GPD survival modeling",
+      "url": "https://github.com/johnwbyrd/delay-concealment"
+    },
+    {
+      "name": "microgpt / aggrogpt",
+      "description": "Annotated reading of Karpathy's microgpt plus a typed PyTorch reimplementation with a thin tensor abstraction",
+      "url": "https://github.com/johnwbyrd/microgpt"
+    },
     {
       "name": "llvm-mos",
       "description": "Founded project, helped write 6502 backend for LLVM, and built development community",

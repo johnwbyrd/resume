@@ -1,6 +1,141 @@
-/* Elegant theme variables */
-[data-theme="elegant"] {
-  /* TODO: Define elegant theme variables */
+/* Elegant theme — editorial serif */
+:root[data-theme="elegant"] {
+  --bg-primary: #faf8f3;
+  --text-primary: #2c2622;
+  --text-secondary: #7a6e63;
+  --border-color: #d9cfbc;
+  --accent: #7a1f1f;
+
+  --font-serif: Georgia, "Times New Roman", Times, serif;
+  --font-display: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+
+  --container-max-width: 62ch;
 }
 
-/* TODO: Implement elegant theme styles */ 
+[data-theme="elegant"] {
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-serif);
+    line-height: 1.7;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-style: italic;
+    text-align: center;
+    margin: 1rem 0 0.25rem;
+    color: var(--accent);
+  }
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.5rem 0;
+    margin: 2.5rem 0 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    font-style: italic;
+    margin-bottom: 0.1rem;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+
+    &:hover {
+      border-bottom-color: var(--accent);
+    }
+  }
+
+  /* Header block */
+  .basics {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .basics-contact {
+    list-style: none;
+    padding: 0;
+    margin: 0.25rem 0 0;
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 0.95rem;
+
+    li {
+      display: inline;
+      margin: 0;
+
+      &::after {
+        content: " · ";
+        margin: 0 0.5rem;
+        color: var(--border-color);
+        font-style: normal;
+      }
+
+      &:last-child::after {
+        content: "";
+      }
+    }
+  }
+
+  /* Experience */
+  .work-item {
+    margin-bottom: 2.25rem;
+  }
+
+  .job-company {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text-secondary);
+  }
+
+  .job-duration,
+  .job-location {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .job-highlights {
+    margin-top: 0.5rem;
+  }
+
+  /* Skills — flat list, centered feel via narrow column */
+  .skills ul {
+    padding-left: 1.5rem;
+  }
+
+  /* Academic */
+  .academic-education p {
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .academic-list {
+    padding-left: 1.5rem;
+  }
+
+  /* Theme selector — quiet, blends with page */
+  #theme-select {
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+    font-family: var(--font-serif);
+    font-style: italic;
+  }
+}

@@ -11,7 +11,7 @@ export function Work({ resumeData }: WorkProps) {
 
   return (
     <section className="work">
-      <h2>Work Experience</h2>
+      <h2>Experience</h2>
       
       <div className="work-list">
         {work.map((job, index) => (
@@ -32,8 +32,6 @@ export function Work({ resumeData }: WorkProps) {
               </div>
               {job.location && <div className="job-location">{job.location}</div>}
             </header>
-            
-            {job.summary && <p className="job-summary">{job.summary}</p>}
             
             {job.highlights && job.highlights.length > 0 && (
               <ul className="job-highlights">

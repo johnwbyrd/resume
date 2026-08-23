@@ -52,7 +52,7 @@
   --text-secondary: var(--c64-cyan);
   --border-color: var(--c64-light-blue);
   --c64-font: "C64_Pro_Mono-STYLE", monospace;
-  --base-font-size: 1.25rem;
+  --base-font-size: 1rem;
 }
 
 /* Apply C64 theme colors and font */
@@ -71,24 +71,10 @@
   
   /* Override text colors for specific elements */
   .job-duration,
-  .job-location,
-  .contact-label {
+  .job-location {
     color: var(--text-secondary);
   }
-  
-  /* Override layout for skills */
-  .skills-list,
-  .skill-keywords {
-    display: block;
-  }
-  
-  .skill-item {
-    border: none;
-    background-color: var(--c64-dark-grey);
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
+
   /* Theme selector */
   #theme-select {
     background-color: var(--c64-dark-grey);
