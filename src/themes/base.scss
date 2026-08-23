@@ -56,7 +56,7 @@ li {
 
 /* Links */
 a {
-  @apply underline decoration-2 underline-offset-2;
+  @apply underline decoration-2 underline-offset-4;
   
   &:hover {
     @apply decoration-4;
