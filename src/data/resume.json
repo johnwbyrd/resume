@@ -131,14 +131,14 @@
       "url": "https://github.com/johnwbyrd/comprehend"
     },
     {
-      "name": "delay-concealment",
-      "description": "Adaptive jitter-buffer depth recommender for real-time audio using spliced empirical/GPD survival modeling",
-      "url": "https://github.com/johnwbyrd/delay-concealment"
+      "name": "zbc",
+      "description": "Zero Board Computer: a specification for an emulatable, open-source software bringup board",
+      "url": "https://github.com/johnwbyrd/zbc"
     },
     {
       "name": "microgpt / aggrogpt",
       "description": "Annotated reading of Karpathy's microgpt plus a typed PyTorch reimplementation with a thin tensor abstraction",
-      "url": "https://github.com/johnwbyrd/microgpt"
+      "url": "https://github.com/johnwbyrd/aggrogpt"
     },
     {
       "name": "llvm-mos",
