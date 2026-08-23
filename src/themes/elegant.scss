@@ -12,6 +12,12 @@
   --container-max-width: 62ch;
 }
 
+@media (min-width: 1024px) {
+  :root[data-theme="elegant"] {
+    --container-max-width: 60rem;
+  }
+}
+
 [data-theme="elegant"] {
   body {
     background-color: var(--bg-primary);
@@ -42,7 +48,7 @@
     border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
     padding: 0.5rem 0;
-    margin: 2.5rem 0 1.5rem;
+    margin: 0 0 1.5rem;
   }
 
   h3 {
@@ -61,34 +67,17 @@
     }
   }
 
-  /* Header block */
-  .basics {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
+  /* Contact list — vertical block, italic, muted */
   .basics-contact {
     list-style: none;
     padding: 0;
-    margin: 0.25rem 0 0;
+    margin: 0;
     color: var(--text-secondary);
     font-style: italic;
     font-size: 0.95rem;
 
     li {
-      display: inline;
-      margin: 0;
-
-      &::after {
-        content: " · ";
-        margin: 0 0.5rem;
-        color: var(--border-color);
-        font-style: normal;
-      }
-
-      &:last-child::after {
-        content: "";
-      }
+      margin-bottom: 0.3rem;
     }
   }
 
@@ -97,14 +86,19 @@
     margin-bottom: 2.25rem;
   }
 
-  .job-company {
+  .job-heading .job-position {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .job-heading .job-company {
     font-style: italic;
     font-weight: 400;
     color: var(--text-secondary);
   }
 
-  .job-duration,
-  .job-location {
+  .job-meta {
     font-style: italic;
     font-size: 0.9rem;
     color: var(--text-secondary);
@@ -114,7 +108,17 @@
     margin-top: 0.5rem;
   }
 
-  /* Skills — flat list, centered feel via narrow column */
+  /* Projects */
+  .project-name {
+    font-style: italic;
+  }
+
+  .project-description {
+    margin-top: 0.25rem;
+    color: var(--text-primary);
+  }
+
+  /* Skills — flat list */
   .skills ul {
     padding-left: 1.5rem;
   }
@@ -128,6 +132,13 @@
 
   .academic-list {
     padding-left: 1.5rem;
+  }
+
+  /* Footer — quiet, warm */
+  .footer {
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+    font-style: italic;
   }
 
   /* Theme selector — quiet, blends with page */

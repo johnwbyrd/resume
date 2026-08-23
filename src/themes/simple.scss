@@ -2,12 +2,14 @@
 [data-theme="simple-light"] {
   --bg-primary: #ffffff;
   --text-primary: #1a1a1a;
+  --text-secondary: #6b7280;
   --border-color: #e5e7eb;
 }
 
 [data-theme="simple-dark"] {
   --bg-primary: #1a1a1a;
   --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
   --border-color: #374151;
 }
 
@@ -21,45 +23,43 @@ body {
   @apply py-8;
 }
 
-/* Resume-specific styles */
-.resume {
-  @apply space-y-8;
-}
-
-.basics {
-  @apply mb-8;
-}
-
+/* Contact list (sidebar on desktop, block on mobile) */
 .basics-contact {
   @apply list-none pl-0;
 }
 
 /* Work experience */
 .work-item {
-  @apply mb-8;
+  @apply mb-6;
 }
 
-.job-company {
-  @apply text-lg font-semibold;
+.job-heading .job-position {
+  font-weight: 600;
 }
 
-.job-duration {
-  @apply text-sm text-gray-600 dark:text-gray-400;
+.job-heading .job-company {
+  font-weight: 400;
+  color: var(--text-secondary);
 }
 
-.job-location {
-  @apply text-sm text-gray-600 dark:text-gray-400;
+.job-meta {
+  color: var(--text-secondary);
 }
 
 .job-highlights {
   @apply mt-2;
 }
 
+/* Projects */
+.project-description {
+  color: var(--text-primary);
+}
+
 /* Footer */
 .footer {
   @apply mt-12 pt-4 pb-6 text-sm text-center border-t;
   border-color: var(--border-color);
-  color: var(--text-secondary, #6b7280);
+  color: var(--text-secondary);
 }
 
 /* Theme selector */

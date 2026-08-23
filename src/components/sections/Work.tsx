@@ -17,20 +17,26 @@ export function Work({ resumeData }: WorkProps) {
         {work.map((job, index) => (
           <article key={index} className="work-item">
             <header>
-              <h3>{job.position}</h3>
-              <div className="job-company">
-                {job.url ? (
-                  <a href={job.url} target="_blank" rel="noopener noreferrer">
-                    {job.name}
-                  </a>
-                ) : (
-                  job.name
+              <h3 className="job-heading">
+                <span className="job-position">{job.position}</span>
+                {job.name && (
+                  <>
+                    , <span className="job-company">
+                      {job.url ? (
+                        <a href={job.url} target="_blank" rel="noopener noreferrer">
+                          {job.name}
+                        </a>
+                      ) : (
+                        job.name
+                      )}
+                    </span>
+                  </>
                 )}
-              </div>
-              <div className="job-duration">
-                {job.startDate} – {job.endDate || 'Present'}
-              </div>
-              {job.location && <div className="job-location">{job.location}</div>}
+              </h3>
+              <p className="job-meta">
+                <time>{job.startDate} – {job.endDate || 'Present'}</time>
+                {job.location && <> · <span className="job-location">{job.location}</span></>}
+              </p>
             </header>
             
             {job.highlights && job.highlights.length > 0 && (

@@ -5,11 +5,10 @@ interface AcademicProps {
 }
 
 export function Academic({ resumeData }: AcademicProps) {
-  const { education, projects, volunteer } = resumeData || {};
+  const { education, volunteer } = resumeData || {};
 
   const hasContent =
     (education && education.length > 0) ||
-    (projects && projects.length > 0) ||
     (volunteer && volunteer.length > 0);
 
   if (!hasContent) return null;
@@ -35,33 +34,23 @@ export function Academic({ resumeData }: AcademicProps) {
         </div>
       )}
 
-      <ul className="academic-list">
-        {projects?.map((p, i) => (
-          <li key={`p-${i}`}>
-            {p.url ? (
-              <a href={p.url} target="_blank" rel="noopener noreferrer">
-                {p.name}
-              </a>
-            ) : (
-              p.name
-            )}
-            {p.description && ` — ${p.description}`}
-          </li>
-        ))}
-        {volunteer?.map((v, i) => (
-          <li key={`v-${i}`}>
-            {v.position} at{' '}
-            {v.url ? (
-              <a href={v.url} target="_blank" rel="noopener noreferrer">
-                {v.organization}
-              </a>
-            ) : (
-              v.organization
-            )}
-            {v.summary && ` — ${v.summary}`}
-          </li>
-        ))}
-      </ul>
+      {volunteer && volunteer.length > 0 && (
+        <ul className="academic-list">
+          {volunteer.map((v, i) => (
+            <li key={i}>
+              {v.position} at{' '}
+              {v.url ? (
+                <a href={v.url} target="_blank" rel="noopener noreferrer">
+                  {v.organization}
+                </a>
+              ) : (
+                v.organization
+              )}
+              {v.summary && ` — ${v.summary}`}
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }

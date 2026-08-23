@@ -40,11 +40,6 @@ p {
   line-height: 1.6;
 }
 
-/* Section spacing */
-section {
-  @apply mb-8;
-}
-
 /* Lists */
 ul, ol {
   @apply mb-4 pl-6;
@@ -86,16 +81,100 @@ a {
   :root {
     --container-padding: 3rem;
   }
-  
+
   h1 {
     @apply text-5xl;
   }
-  
+
   h2 {
     @apply text-4xl;
   }
-  
+
   h3 {
     @apply text-3xl;
   }
-} 
+}
+
+/* Theme selector — pin width so dropdown doesn't overflow viewport on the right */
+#theme-select {
+  min-width: 8rem;
+}
+
+/* Resume grid layout — single column by default, sidebar at wide viewports */
+.resume {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+}
+
+.resume-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* Kill trailing margins from list/section internals — let the flex gap own inter-section spacing */
+.resume-body :last-child {
+  margin-bottom: 0;
+}
+
+/* Tighten Work / Projects headings — position+company one row, dates+location one row below */
+.work-item h3,
+.project-item h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0;
+}
+
+.job-meta {
+  font-size: 0.9em;
+  margin-top: 0.15rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Projects — bulletless card list, name as h3 */
+.projects-list {
+  list-style: none;
+  padding: 0;
+}
+
+.project-item {
+  margin-bottom: 1.5rem;
+}
+
+.project-description {
+  margin-top: 0.15rem;
+  margin-bottom: 0;
+}
+
+/* Sidebar layout activates at laptop width */
+@media (min-width: 1024px) {
+  :root {
+    --container-max-width: 60rem;
+  }
+
+  .resume {
+    grid-template-columns: minmax(180px, 220px) 1fr;
+    grid-template-areas:
+      "hero  hero"
+      "aside body";
+    column-gap: var(--spacing-xl);
+    row-gap: var(--spacing-md);
+  }
+
+  .resume-hero { grid-area: hero; }
+
+  .resume-aside {
+    grid-area: aside;
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+    font-size: 0.9em;
+  }
+
+  .resume-body { grid-area: body; }
+
+  .work-item h3,
+  .project-item h3 {
+    font-size: 1.25rem;
+  }
+}
