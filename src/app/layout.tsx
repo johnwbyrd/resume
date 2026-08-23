@@ -4,12 +4,15 @@ import { Layout } from '@/components/Layout';
 import '@/styles/globals.css';
 import '@/themes/main.scss';
 import { THEMES, THEME_LABELS } from '@/lib/theme';
+import resume from '@/data/resume.json';
 
 const inter = Inter({ subsets: ['latin'] });
 
+const { basics } = resume;
+
 export const metadata: Metadata = {
-  title: 'John Byrd - Software Development Executive',
-  description: 'Professional resume of John Byrd, Software Development Executive',
+  title: `${basics.name} - ${basics.label}`,
+  description: `Professional resume of ${basics.name}, ${basics.label}`,
 };
 
 export default function RootLayout({
@@ -23,19 +26,27 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{
           __html: `
             (function() {
-              // Wait for DOM to be ready
+              var themes = ${JSON.stringify(THEMES)};
+              var stored = null;
+              try { stored = localStorage.getItem('theme'); } catch (e) {}
+              var initial;
+              if (stored && themes.indexOf(stored) !== -1) {
+                initial = stored;
+              } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                initial = 'simple-dark';
+              } else {
+                initial = 'simple-light';
+              }
+              document.documentElement.setAttribute('data-theme', initial);
+
               document.addEventListener('DOMContentLoaded', function() {
-                const themeSelect = document.getElementById('theme-select');
-                if (!themeSelect) return;
-                
-                // Set select value to match current theme
-                themeSelect.value = document.documentElement.getAttribute('data-theme') || 'simple-light';
-                
-                // Handle theme changes
-                themeSelect.addEventListener('change', function(e) {
-                  const newTheme = e.target.value;
-                  document.documentElement.setAttribute('data-theme', newTheme);
-                  localStorage.setItem('theme', newTheme);
+                var sel = document.getElementById('theme-select');
+                if (!sel) return;
+                sel.value = document.documentElement.getAttribute('data-theme') || 'simple-light';
+                sel.addEventListener('change', function(e) {
+                  var v = e.target.value;
+                  document.documentElement.setAttribute('data-theme', v);
+                  try { localStorage.setItem('theme', v); } catch (err) {}
                 });
               });
             })();

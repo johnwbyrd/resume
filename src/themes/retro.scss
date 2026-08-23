@@ -1,31 +1,20 @@
 /* Retro Theme - Base Styles */
-@import './base.scss';
 
 :root[data-theme="retro"] {
-  // Inherit base variables
-  --spacing-xs: var(--spacing-xs);
-  --spacing-sm: var(--spacing-sm);
-  --spacing-md: var(--spacing-md);
-  --spacing-lg: var(--spacing-lg);
-  --spacing-xl: var(--spacing-xl);
-  --container-padding: var(--container-padding);
-  --container-max-width: var(--container-max-width);
-  
   // Retro-specific variables
   --retro-primary: #00ff00; /* Light green for primary text */
   --retro-secondary: #00cc00; /* Slightly darker green for secondary text */
   --retro-background: #000000; /* Black background */
   --retro-font: "Courier New", monospace; /* Single source of truth for font */
-  --retro-font-size: 1.25rem;
 
   // Theme variables that override base
   --bg-primary: var(--retro-background);
   --text-primary: var(--retro-primary);
   --text-secondary: var(--retro-secondary);
   --border-color: var(--retro-primary);
-  
+
   // Increased font size for better readability
-  --base-font-size: var(--retro-font-size);
+  --base-font-size: 1.25rem;
 }
 
 /* Background */

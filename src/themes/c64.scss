@@ -1,5 +1,4 @@
 /* Commodore 64 Theme - Base Styles */
-@import './retro.scss';
 
 /* C64 Font */
 @font-face {
@@ -29,15 +28,6 @@
 }
 
 :root[data-theme="c64"] {
-  // Inherit retro variables
-  --spacing-xs: var(--spacing-xs);
-  --spacing-sm: var(--spacing-sm);
-  --spacing-md: var(--spacing-md);
-  --spacing-lg: var(--spacing-lg);
-  --spacing-xl: var(--spacing-xl);
-  --container-padding: var(--container-padding);
-  --container-max-width: var(--container-max-width);
-  
   // C64 Color Palette
   --c64-black: #000000;
   --c64-white: #FFFFFF;
@@ -62,6 +52,7 @@
   --text-secondary: var(--c64-cyan);
   --border-color: var(--c64-light-blue);
   --c64-font: "C64_Pro_Mono-STYLE", monospace;
+  --base-font-size: 1.25rem;
 }
 
 /* Apply C64 theme colors and font */
@@ -70,12 +61,12 @@
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: var(--c64-font);
-    font-size: var(--retro-font-size);
+    font-size: var(--base-font-size);
   }
   
   /* Make all text the same size */
   .resume * {
-    font-size: var(--retro-font-size);
+    font-size: var(--base-font-size);
   }
   
   /* Override text colors for specific elements */

@@ -23,12 +23,3 @@ export const THEME_LABELS: Record<Theme, string> = {
   'c64': 'Commodore 64',
   'print': 'Print'
 };
-
-export function setTheme(theme: Theme): void {
-  document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('theme', theme);
-}
-
-export function getTheme(): Theme {
-  return (localStorage.getItem('theme') as Theme) || 'simple-light';
-} 
