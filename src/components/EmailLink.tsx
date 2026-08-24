@@ -13,11 +13,12 @@ function reverseStr(s: string): string {
 }
 
 /* Insert <wbr> after "@" and each "." so long addresses wrap at natural
-   boundaries instead of mid-word. */
+   boundaries instead of mid-word. Avoids regex lookbehind, which Safari
+   didn't ship until 16.4 — iOS 15 devices (iPhone 6s, etc.) throw a
+   SyntaxError on the entire chunk otherwise. */
 function withEmailBreaks(addr: string): React.ReactNode[] {
-  return addr
-    .split(/(?<=[@.])/)
-    .flatMap((part, i) => (i === 0 ? [part] : [<wbr key={i} />, part]));
+  const parts = addr.match(/[^@.]*[@.]?/g)?.filter(Boolean) ?? [addr];
+  return parts.flatMap((part, i) => (i === 0 ? [part] : [<wbr key={i} />, part]));
 }
 
 /* Server renders the obfuscated span; the client swaps in a real mailto anchor
