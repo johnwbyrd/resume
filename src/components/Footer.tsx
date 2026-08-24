@@ -13,7 +13,7 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            github.com/johnwbyrd/resume
+            @johnwbyrd<wbr />/resume
           </a>
           .
         </p>
