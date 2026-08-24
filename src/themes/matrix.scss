@@ -1,0 +1,52 @@
+/* Matrix theme — the "green phosphor terminal" retro look, plus the
+   canonical katakana rain behind everything. The rain itself is drawn by
+   the MatrixRain client component; this file just supplies the palette
+   and makes sure the canvas layers correctly under the content. */
+@use './mixins' as *;
+
+:root[data-theme="matrix"] {
+  --matrix-green: #00ff41;
+  --matrix-dim: #00b32d;
+  --matrix-background: #000000;
+  --matrix-font: "Courier New", monospace;
+
+  --bg-primary: var(--matrix-background);
+  --text-primary: var(--matrix-green);
+  --text-secondary: var(--matrix-dim);
+  --border-color: var(--matrix-green);
+
+  --base-font-size: 1.25rem;
+}
+
+[data-theme="matrix"] {
+  /* Body's bg propagates to the viewport root; keeping body itself
+     transparent lets the z-index:-1 canvas remain visible behind content. */
+  html {
+    background-color: var(--matrix-background);
+  }
+
+  body {
+    background-color: transparent;
+    color: var(--text-primary);
+    font-family: var(--matrix-font);
+  }
+
+  @include flat-monospace-text;
+
+  .job-location {
+    color: var(--text-secondary);
+  }
+
+  .theme-picker-button,
+  .theme-picker-menu {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+  }
+
+  .theme-picker-option:hover,
+  .theme-picker-option:focus {
+    background-color: var(--text-secondary);
+    color: var(--bg-primary);
+  }
+}

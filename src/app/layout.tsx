@@ -5,6 +5,7 @@ import '@/styles/globals.css';
 import '@/themes/main.scss';
 import { THEMES } from '@/lib/theme';
 import { ThemePicker } from '@/components/ThemePicker';
+import { MatrixRain } from '@/components/MatrixRain';
 import resume from '@/data/resume.json';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -33,6 +34,8 @@ export default function RootLayout({
               var themes = ${JSON.stringify(THEMES)};
               var stored = null;
               try { stored = localStorage.getItem('theme'); } catch (e) {}
+              /* 'retro' was renamed to 'matrix' — preserve prior preference. */
+              if (stored === 'retro') stored = 'matrix';
               var initial;
               if (stored && themes.indexOf(stored) !== -1) initial = stored;
               else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) initial = 'simple-dark';
@@ -43,6 +46,7 @@ export default function RootLayout({
         }} />
       </head>
       <body className={inter.className}>
+        <MatrixRain />
         <div className="fixed top-4 right-4 z-50">
           <ThemePicker />
         </div>

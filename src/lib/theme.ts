@@ -2,7 +2,7 @@ export type Theme =
   | 'simple-light'
   | 'simple-dark'
   | 'elegant'
-  | 'retro'
+  | 'matrix'
   | 'c64'
   | 'print';
 
@@ -10,7 +10,7 @@ export const THEMES: Theme[] = [
   'simple-light',
   'simple-dark',
   'elegant',
-  'retro',
+  'matrix',
   'c64',
   'print'
 ];
@@ -19,7 +19,7 @@ export const THEME_LABELS: Record<Theme, string> = {
   'simple-light': 'Light',
   'simple-dark': 'Dark',
   'elegant': 'Elegant',
-  'retro': 'Retro',
+  'matrix': 'Matrix',
   'c64': 'Commodore 64',
   'print': 'Print'
 };

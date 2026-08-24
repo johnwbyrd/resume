@@ -52,7 +52,7 @@
   display: none;
 }
 
-@each $theme in ('simple-light', 'simple-dark', 'elegant', 'retro', 'c64', 'print') {
+@each $theme in ('simple-light', 'simple-dark', 'elegant', 'matrix', 'c64', 'print') {
   [data-theme="#{$theme}"] .theme-picker-label[data-theme-label="#{$theme}"] {
     display: inline;
   }
