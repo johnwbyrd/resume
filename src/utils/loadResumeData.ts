@@ -1,4 +1,4 @@
-import resumeData from '@/data/resume.json';
+import resumeJson from '@/data/resume.json';
 
 export interface ResumeData {
   basics?: {
@@ -49,6 +49,4 @@ export interface ResumeData {
   }>;
 }
 
-export function loadResumeData(): ResumeData {
-  return resumeData as ResumeData;
-}
+export const resume = resumeJson as ResumeData;

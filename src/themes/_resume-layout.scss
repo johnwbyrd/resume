@@ -1,0 +1,90 @@
+/* Resume grid layout — single column by default, sticky sidebar at wide
+   viewports. Theme-agnostic structural rules; colors are per-theme. */
+
+.resume {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+}
+
+.resume-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* Kill trailing margins from list/section internals — let the flex gap own
+   inter-section spacing. */
+.resume-body :last-child {
+  margin-bottom: 0;
+}
+
+/* Tighten Work / Projects headings — position+company one row, dates+location
+   one row below. */
+.work-item h3,
+.project-item h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0;
+}
+
+.job-meta {
+  font-size: 0.9em;
+  margin-top: 0.15rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Projects — bulletless card list, name as h3 */
+.projects-list {
+  list-style: none;
+  padding: 0;
+}
+
+.project-item {
+  margin-bottom: 1.5rem;
+}
+
+.project-description {
+  margin-top: 0.15rem;
+  margin-bottom: 0;
+}
+
+/* Push the title underline clear of descenders (aggrogpt, microgpt, etc.) */
+.project-item h3 a {
+  text-underline-offset: 0.35em;
+}
+
+/* Sidebar layout activates at laptop width */
+@media (min-width: 1024px) {
+  .resume {
+    grid-template-columns: minmax(200px, 240px) 1fr;
+    grid-template-areas: "sidebar body";
+    column-gap: var(--spacing-xl);
+  }
+
+  .resume-sidebar {
+    grid-area: sidebar;
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+    min-width: 0;
+  }
+
+  /* Keep the name on one line in the sidebar; drop a step from the base h1
+     size so "John Byrd" fits without breaking. */
+  .resume-hero .name {
+    white-space: nowrap;
+    @apply text-4xl;
+  }
+
+  .resume-aside {
+    font-size: 0.9em;
+    overflow-wrap: anywhere;
+  }
+
+  .resume-body { grid-area: body; }
+
+  .work-item h3,
+  .project-item h3 {
+    font-size: 1.25rem;
+  }
+}

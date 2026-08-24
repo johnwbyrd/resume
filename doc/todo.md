@@ -1,64 +1,41 @@
 # Todo / Future Enhancements
 
-This document lists planned enhancements and areas for future work, reflecting the current architecture and goals.
+Tracking possible next steps. Completed feature work has been removed once
+merged; use `git log` for history.
 
-## Feature Implementation
+## Content and features
 
-1.  **Implement Elegant Theme:**
-    *   Design and implement styles for the `elegant` theme in `src/themes/elegant.scss`.
-    *   Define appropriate CSS variables and apply styles using semantic classes and `@apply`.
-    *   Consider typography, spacing, and subtle color accents.
+1. **PDF export button.** Currently users produce a PDF via the browser's
+   Print dialog (with the Print theme active or via `@media print`). A
+   one-click "Download PDF" affordance could pre-render to `resume.pdf` as
+   part of the build or generate on the fly.
 
-2.  **Implement Print Theme:**
-    *   Design and implement styles for the `print` theme in `src/themes/print.scss`.
-    *   Focus on optimizing for physical paper output (page breaks, printer-friendly styles, remove unnecessary elements like theme switcher).
+2. **Analytics.** GA4 or a lightweight self-hosted alternative (Plausible).
+   Track page views; track theme selection.
 
-3.  **(Optional) PDF Generation:**
-    *   Investigate and implement a mechanism to generate a PDF version of the resume.
-    *   Options might include client-side libraries (e.g., `html2pdf.js`, `jsPDF`) or potentially a serverless function if static export limits client-side options.
-    *   Ensure consistent formatting with the web version (perhaps based on the `print` theme).
+3. **`Person` schema.org markup** for richer SEO.
 
-4.  **(Optional) Google Analytics Integration:**
-    *   Configure GA4 integration if desired.
-    *   Track page views and potentially theme switching events.
+## Styling and structure
 
-## Theme System & Styling Refinements
+1. **Theme palette expansion.** Add shared variables like `--color-accent`,
+   `--color-link-hover`, `--bg-secondary` in `_variables.scss` and let each
+   theme override. Right now some themes reach for their own private tokens
+   (retro's `--retro-primary`, c64's colour named ramp) rather than a shared
+   semantic layer.
 
-5.  **Theme Palette Expansion:**
-    *   Define additional shared CSS variables (e.g., `--color-accent`, `--color-link-hover`, `--bg-secondary`) in `base.scss` or theme files as appropriate.
-    *   Update existing themes (`simple`, `retro`, `c64`) to utilize new variables where applicable.
+2. **Semantic class coverage audit.** Confirm every logical unit
+   (sub-headings, meta rows, list wrappers) has a class name and a
+   corresponding rule where applicable.
 
-6.  **Review Semantic Class Coverage:**
-    *   Ensure all logical sections and elements within the resume components have appropriate semantic class names applied.
-    *   Verify that corresponding styles are defined in the theme SCSS files.
+## Accessibility and testing
 
-7.  **Theme Switching Enhancement:**
-    *   Consider implementing initial theme detection based on user's system preference (`prefers-color-scheme`) before falling back to localStorage or default.
+1. **Full a11y audit.** Contrast on every theme (retro's green-on-black and
+   c64's palette are the risky ones), keyboard navigation for the theme
+   picker, screen-reader landmarks. Automate with axe-core if possible.
 
-## General Improvements
+2. **Cross-browser / device testing.** Manual smoke test on Chrome, Firefox,
+   Safari, Edge at desktop and mobile widths. Verify theme switching
+   consistency.
 
-8.  **Accessibility Review:**
-    *   Conduct a thorough accessibility audit (WCAG guidelines).
-    *   Verify sufficient color contrast across all implemented themes.
-    *   Ensure proper ARIA attributes are used where necessary (e.g., theme selector).
-    *   Test keyboard navigation thoroughly.
-    *   Check heading structure and semantic HTML usage.
-
-9.  **Cross-Browser/Device Testing:**
-    *   Test appearance and functionality across major browsers (Chrome, Firefox, Safari, Edge).
-    *   Validate responsive behavior on various screen sizes (mobile, tablet, desktop).
-    *   Test theme switching consistency across browsers.
-
-10. **Performance Review:**
-    *   Run Lighthouse audits periodically.
-    *   Analyze CSS bundle size; consider potential optimizations if needed (though likely minimal impact for this project size).
-
-11. **Advanced SEO:**
-    *   Review and potentially implement `Person` schema.org markup for enhanced SEO.
-    *   Ensure all metadata and OpenGraph tags are optimal.
-
-12. **Code Organization:**
-    *   Consider if splitting theme SCSS files further (e.g., by section) would improve maintainability as themes grow.
-
-13. **Documentation Update (Ongoing):**
-    *   Keep `README.md` and `doc/rationale.md` updated as the project evolves. (Consider this task complete for now after we rewrite them).
+3. **Lighthouse baseline.** Record scores; watch for regressions when adding
+   analytics or PDF work.

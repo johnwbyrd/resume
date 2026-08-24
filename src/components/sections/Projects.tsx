@@ -1,4 +1,5 @@
 import { ResumeData } from '@/utils/loadResumeData';
+import { MaybeLink } from '../MaybeLink';
 
 interface ProjectsProps {
   resumeData: ResumeData;
@@ -16,13 +17,7 @@ export function Projects({ resumeData }: ProjectsProps) {
         {projects.map((project, i) => (
           <li key={i} className="project-item">
             <h3 className="project-name">
-              {project.url ? (
-                <a href={project.url} target="_blank" rel="noopener noreferrer">
-                  {project.name}
-                </a>
-              ) : (
-                project.name
-              )}
+              <MaybeLink href={project.url}>{project.name}</MaybeLink>
             </h3>
             {project.description && (
               <p className="project-description">{project.description}</p>

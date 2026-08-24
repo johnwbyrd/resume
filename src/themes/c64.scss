@@ -1,4 +1,5 @@
 /* Commodore 64 Theme - Base Styles */
+@use './mixins' as *;
 
 /* C64 Font */
 @font-face {
@@ -61,16 +62,11 @@
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: var(--c64-font);
-    font-size: var(--base-font-size);
   }
-  
-  /* Make all text the same size */
-  .resume * {
-    font-size: var(--base-font-size);
-  }
-  
+
+  @include flat-monospace-text;
+
   /* Override text colors for specific elements */
-  .job-duration,
   .job-location {
     color: var(--text-secondary);
   }

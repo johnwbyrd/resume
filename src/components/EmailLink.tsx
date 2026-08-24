@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 
 interface EmailLinkProps {
-  dataU: string;
-  dataD: string;
+  emailUser: string;
+  emailDomain: string;
   fallback: string;
 }
 
@@ -23,18 +23,18 @@ function withEmailBreaks(addr: string): React.ReactNode[] {
 /* Server renders the obfuscated span; the client swaps in a real mailto anchor
    after hydration. The plain address never appears in the static HTML or the
    RSC payload — only the reversed halves do. */
-export function EmailLink({ dataU, dataD, fallback }: EmailLinkProps) {
+export function EmailLink({ emailUser, emailDomain, fallback }: EmailLinkProps) {
   const [addr, setAddr] = useState<string | null>(null);
 
   useEffect(() => {
-    const u = reverseStr(dataU);
-    const d = reverseStr(dataD);
+    const u = reverseStr(emailUser);
+    const d = reverseStr(emailDomain);
     if (u && d) setAddr(`${u}@${d}`);
-  }, [dataU, dataD]);
+  }, [emailUser, emailDomain]);
 
   if (!addr) {
     return (
-      <span className="email" data-u={dataU} data-d={dataD}>
+      <span className="email" data-email-user={emailUser} data-email-domain={emailDomain}>
         {fallback}
       </span>
     );

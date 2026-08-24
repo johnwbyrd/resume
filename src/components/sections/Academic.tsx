@@ -1,4 +1,5 @@
 import { ResumeData } from '@/utils/loadResumeData';
+import { MaybeLink } from '../MaybeLink';
 
 interface AcademicProps {
   resumeData: ResumeData;
@@ -22,13 +23,7 @@ export function Academic({ resumeData }: AcademicProps) {
           {education.map((edu, i) => (
             <p key={i}>
               {edu.studyType} in {edu.area},{' '}
-              {edu.url ? (
-                <a href={edu.url} target="_blank" rel="noopener noreferrer">
-                  {edu.institution}
-                </a>
-              ) : (
-                edu.institution
-              )}
+              <MaybeLink href={edu.url}>{edu.institution}</MaybeLink>
             </p>
           ))}
         </div>
@@ -39,13 +34,7 @@ export function Academic({ resumeData }: AcademicProps) {
           {volunteer.map((v, i) => (
             <li key={i}>
               {v.position} at{' '}
-              {v.url ? (
-                <a href={v.url} target="_blank" rel="noopener noreferrer">
-                  {v.organization}
-                </a>
-              ) : (
-                v.organization
-              )}
+              <MaybeLink href={v.url}>{v.organization}</MaybeLink>
               {v.summary && ` — ${v.summary}`}
             </li>
           ))}

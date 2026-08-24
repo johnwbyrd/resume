@@ -1,7 +1,7 @@
-import { loadResumeData } from '@/utils/loadResumeData';
+import { resume } from '@/utils/loadResumeData';
 
 export function Footer() {
-  const { basics } = loadResumeData();
+  const { basics } = resume;
 
   return (
     <footer className="footer">

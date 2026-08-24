@@ -24,6 +24,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Set the initial data-theme before hydration so first paint uses the
+            user's stored/system preference (avoids a theme flash). All click,
+            keyboard, and persistence logic lives in ThemePicker itself. */}
         <script dangerouslySetInnerHTML={{
           __html: `
             (function() {
@@ -31,47 +34,10 @@ export default function RootLayout({
               var stored = null;
               try { stored = localStorage.getItem('theme'); } catch (e) {}
               var initial;
-              if (stored && themes.indexOf(stored) !== -1) {
-                initial = stored;
-              } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                initial = 'simple-dark';
-              } else {
-                initial = 'simple-light';
-              }
+              if (stored && themes.indexOf(stored) !== -1) initial = stored;
+              else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) initial = 'simple-dark';
+              else initial = 'simple-light';
               document.documentElement.setAttribute('data-theme', initial);
-
-              document.addEventListener('DOMContentLoaded', function() {
-                var picker = document.querySelector('.theme-picker');
-                if (!picker) return;
-                var button = picker.querySelector('.theme-picker-button');
-                var menu = picker.querySelector('.theme-picker-menu');
-
-                function setOpen(open) {
-                  picker.setAttribute('data-open', open ? 'true' : 'false');
-                  button.setAttribute('aria-expanded', open ? 'true' : 'false');
-                }
-
-                button.addEventListener('click', function() {
-                  setOpen(picker.getAttribute('data-open') !== 'true');
-                });
-
-                menu.querySelectorAll('[data-theme-value]').forEach(function(opt) {
-                  opt.addEventListener('click', function() {
-                    var v = opt.getAttribute('data-theme-value');
-                    document.documentElement.setAttribute('data-theme', v);
-                    try { localStorage.setItem('theme', v); } catch (e) {}
-                    setOpen(false);
-                  });
-                });
-
-                document.addEventListener('mousedown', function(e) {
-                  if (!picker.contains(e.target)) setOpen(false);
-                });
-
-                document.addEventListener('keydown', function(e) {
-                  if (e.key === 'Escape') setOpen(false);
-                });
-              });
             })();
           `
         }} />

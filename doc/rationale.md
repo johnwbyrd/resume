@@ -1,71 +1,130 @@
 # Technical Rationale
 
-This document explains the key architectural decisions behind this resume website project, particularly focusing on the styling and theming strategy.
+This document explains the key architectural decisions behind the resume
+site: styling strategy, theme system, and how print output is handled.
 
-## Core Goals
+## Goals
 
-The primary objectives driving the technical choices were:
+1. **Semantic HTML.** Markup describes content, not presentation. Assistive
+   tech, search engines, and readers see the same meaningful structure.
+2. **Themeability.** Distinct palettes, typography, and even layouts (e.g.
+   the compact print layout) should swap without touching component code.
+3. **Performance.** Static export, minimal JS, no runtime style
+   recalculation for theme swaps.
+4. **Maintainability.** Cohesive files that each do one thing; shared
+   patterns extracted into mixins or components.
 
-1.  **Semantic HTML:** Ensure the underlying HTML structure is meaningful, accessible, and independent of specific visual presentation.
-2.  **Themeability:** Allow easy switching between distinct visual themes (color palettes, typography, spacing) without altering the core content or structure.
-3.  **Performance:** Deliver a fast-loading experience through static site generation and optimized assets.
-4.  **Maintainability:** Create a codebase that is easy to understand, modify, and extend.
+## Styling: semantic HTML + SCSS with Tailwind `@apply`
 
-## Styling Philosophy: Semantic HTML with SCSS and Tailwind (@apply)
+Components emit clean, semantic class names — `<article class="work-item">`,
+`<h2>Experience</h2>`, `<ul class="basics-contact">` — with no styling
+concerns in the TSX. Styles live in SCSS files that target those class
+names, using Tailwind utilities via `@apply` for spacing and layout
+primitives:
 
-A central decision was to prioritize **semantic HTML** structure within the React (TSX) components. Instead of embedding styling logic directly into the markup using utility classes (like `className="text-lg font-bold mb-4"`), components use semantic class names that describe the *content's purpose* (e.g., `className="job-title"`, `className="work-item"`).
+```scss
+.work-item {
+  @apply mb-6;
+  border-bottom: 1px solid var(--border-color);
+}
+```
 
-This approach offers several advantages:
+This keeps components easy to read, centralises styling decisions in one
+place, and still lets us lean on Tailwind's design system for consistency.
 
-*   **Readability:** The TSX markup remains clean and focused on structure.
-*   **Accessibility:** Semantic HTML is inherently more accessible to assistive technologies.
-*   **Maintainability:** Changes to styling are centralized in the CSS/SCSS files, not scattered across components.
-*   **Separation of Concerns:** Structure (HTML/TSX) is clearly separated from presentation (CSS/SCSS).
+### Build ordering
 
-However, I still wanted to leverage the power and consistency of a utility-class system like Tailwind CSS for defining visual styles (spacing, typography, layout). To achieve this *without* sacrificing semantic HTML, I adopted a hybrid approach using SCSS:
+`src/styles/globals.css` contains only the three `@tailwind` directives, and
+is imported in `src/app/layout.tsx` **before** `src/themes/main.scss`. This
+matters because `@apply` inside SCSS requires Tailwind's utilities to
+already be generated. Keeping the directives in a separate CSS file, loaded
+first, avoids ordering bugs.
 
-1.  **SCSS for Structure and Theming:**
-    *   **Organization:** SCSS (`@import`) is used to structure the stylesheets, importing a `base.scss` file and then theme-specific files (`simple.scss`, `retro.scss`, etc.) via `main.scss`.
-    *   **Theme Scoping:** Each theme's styles are defined within SCSS, primarily using **CSS Custom Properties (Variables)** scoped to a `[data-theme="theme-name"]` attribute selector (e.g., `[data-theme="simple-light"] { --bg-primary: #fff; }`). This is the core mechanism enabling theme switching.
-    *   **Semantic Selectors:** SCSS rules target the semantic class names defined in the TSX components (e.g., `.job-title { ... }`, `.work-item { ... }`).
+## Theme system: CSS custom properties + data attributes
 
-2.  **Tailwind via `@apply` for Implementation:**
-    *   Within the SCSS rules for semantic selectors, Tailwind's `@apply` directive is used to apply the desired utility classes. For example:
-        ```scss
-        // src/themes/simple.scss
-        .job-company {
-          @apply text-lg font-semibold; // Apply Tailwind utilities
-        }
+Each theme defines its look primarily through CSS custom properties scoped
+to a `[data-theme="…"]` attribute selector on `<html>`:
 
-        .work-item {
-          @apply mb-8; // Apply Tailwind spacing
-          border-bottom: 1px solid var(--border-color); // Use theme variable
-        }
-        ```
-    *   This allows us to use Tailwind's design system (spacing scale, font sizes, etc.) for consistency while keeping the styling logic encapsulated within the SCSS files, tied to semantic selectors.
+```scss
+[data-theme="simple-dark"] {
+  --bg-primary: #1a1a1a;
+  --text-primary: #fff;
+}
+```
 
-3.  **Separation of `@tailwind` Directives:**
-    *   The core `@tailwind base;`, `@tailwind components;`, and `@tailwind utilities;` directives are placed in a separate, standalone `src/styles/globals.css` file.
-    *   This file is imported *before* `src/themes/main.scss` in the Next.js layout (`src/app/layout.tsx`).
-    *   **Reasoning:** This separation is crucial due to the CSS build process. Placing `@apply` within SCSS requires the Tailwind utilities to be processed *after* the SCSS rules are defined. If `@tailwind utilities` were in the same SCSS file or imported *after* the rules using `@apply`, the build might fail or produce incorrect CSS because the utilities wouldn't be available when `@apply` needs them. Separating them ensures Tailwind's base styles and utilities are generated first, making them available for `@apply` within the theme SCSS files.
+The rest of the CSS consumes those variables (`background: var(--bg-primary)`).
+Switching the `data-theme` attribute instantly re-scopes the variables and
+re-renders the page with zero JS beyond the attribute swap.
 
-4.  **CSS Variables for Dynamic Switching:**
-    *   The themes define their specific look primarily through CSS Custom Properties (e.g., `--bg-primary`, `--text-primary`, `--border-color`).
-    *   SCSS rules consume these variables (`background-color: var(--bg-primary);`).
-    *   A simple client-side script (`ThemeSwitcher` component, likely in `Layout.tsx` or similar) changes the `data-theme` attribute on the `<html>` or `<body>` element. This instantly activates the corresponding CSS variable scope, changing the site's appearance without needing to reload styles or apply new classes via JavaScript.
+### Themes shipped
 
-## Performance Considerations
+* `simple-light`, `simple-dark` — default sans-serif on white/dark
+* `elegant` — editorial serif on cream
+* `retro`, `c64` — period-terminal aesthetics
+* `print` — compact 2-page paper layout; doubles as `@media print`
 
-*   **Static Export:** The site uses Next.js's static export feature (`output: 'export'`). This generates plain HTML, CSS, and minimal JavaScript files, resulting in extremely fast load times and eliminating server-side rendering overhead.
-*   **Minimal JavaScript:** The core resume content requires zero JavaScript to render. JS is only used for the non-essential theme-switching enhancement.
+### FOUC prevention
 
-## Development Experience
+The theme picker persists the user's choice to `localStorage`. To avoid a
+theme flash on first paint, an inline `<script>` in the document head reads
+`localStorage` (falling back to `prefers-color-scheme`) and sets
+`document.documentElement.data-theme` before hydration. That script does
+nothing else — all interactive behavior lives in the React `ThemePicker`
+client component.
 
-*   **TypeScript:** Provides type safety for component props and resume data.
-*   **SCSS:** Offers features like nesting and imports for better CSS organization.
-*   **Tailwind:** Speeds up the definition of styles via `@apply`.
-*   **IDE Configuration:** A known trade-off of using `@apply` within SCSS is that some IDE linters or language servers might show warnings for the `@apply` directive as an "unknown at-rule". This can usually be resolved by configuring the IDE or linter (e.g., setting `scss.lint.unknownAtRules: "ignore"` in VS Code's settings or using Stylelint with appropriate configuration). This should be noted in the project's README.
+## Print output
 
-## Conclusion
+Print styles are defined once, as a SCSS mixin (`@mixin print-layout` in
+`src/themes/print.scss`), and applied in two places:
 
-This architecture prioritizes clean, semantic HTML while leveraging the strengths of both SCSS (organization, theming variables) and Tailwind CSS (utility classes via `@apply`). By carefully managing the build process and using CSS Custom Properties, it achieves efficient theme switching for a performant, maintainable, and accessible static website. 
+1. `html[data-theme="print"]` — the on-screen "Print" theme, which
+   previews what will be printed while still letting the user interact.
+2. `@media print` — always applies at real print time, regardless of the
+   on-screen theme. Also hides the theme picker and footer.
+
+The mixin re-scales typography to 10pt with tight leading, collapses the
+sidebar into a single-line contact row, and renders projects inline
+(`name — description`). Verified at ~2 pages via
+`google-chrome --headless --print-to-pdf` + `pdfinfo`.
+
+## File organisation
+
+```text
+src/themes/
+  base.scss              Coordinator; @use's the partials below
+  _variables.scss        Design tokens (spacing, container)
+  _typography.scss       h1-h6, p, ul/ol/li, a
+  _theme-picker.scss     Picker widget styles
+  _resume-layout.scss    Grid, sidebar, work/project item tweaks
+  _mixins.scss           Shared mixins (e.g. flat-monospace-text)
+  simple.scss, elegant.scss, retro.scss, c64.scss, print.scss
+  main.scss              Imports base + all themes
+```
+
+Theme files stay focused on their theme's identity (colors, fonts,
+distinctive layout tweaks). Shared behaviors live in `_mixins.scss`; for
+example, `retro` and `c64` both include `flat-monospace-text` to collapse
+type hierarchy the way a period terminal would.
+
+## Component boundaries
+
+Most rendering is server-side. Two components carry the `'use client'`
+directive because they need runtime state:
+
+* `ThemePicker` — owns menu open/close state, outside-click and Escape
+  handlers, and writes the selected theme to `localStorage`.
+* `EmailLink` — renders an obfuscated placeholder on the server, then
+  reassembles a real `mailto:` address in `useEffect` so the plain email
+  never appears in the static HTML.
+
+A small `MaybeLink` helper wraps the "if there's a URL, make it an anchor;
+otherwise emit plain text" pattern that recurred across every section.
+
+## Development trade-offs
+
+* **`@apply` inside SCSS** — some IDE linters flag `@apply` as an unknown
+  at-rule. Configure your linter accordingly (VS Code:
+  `scss.lint.unknownAtRules: "ignore"`; Stylelint: allow the directive).
+* **Inline theme-init script** — `dangerouslySetInnerHTML` is used
+  intentionally for the pre-hydration theme setter. It's the minimum viable
+  way to avoid a flash on load. All other picker logic is regular React.

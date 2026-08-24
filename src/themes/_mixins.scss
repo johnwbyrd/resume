@@ -1,0 +1,19 @@
+/* Shared theme mixins. Themes @use this via `@use './mixins' as *;`. */
+
+/* Flatten all text (including the h1 name) to a single body-scale size.
+   Used by retro and c64 themes which mimic period terminals — hierarchy is
+   conveyed by color and position, not by font-size. Caller sets the
+   font-family on body. */
+@mixin flat-monospace-text {
+  body {
+    font-size: var(--base-font-size);
+  }
+
+  .resume * {
+    font-size: var(--base-font-size);
+  }
+
+  .name {
+    font-size: var(--base-font-size);
+  }
+}

@@ -1,4 +1,5 @@
 import { ResumeData } from '@/utils/loadResumeData';
+import { MaybeLink } from '../MaybeLink';
 
 interface WorkProps {
   resumeData: ResumeData;
@@ -12,7 +13,7 @@ export function Work({ resumeData }: WorkProps) {
   return (
     <section className="work">
       <h2>Experience</h2>
-      
+
       <div className="work-list">
         {work.map((job, index) => (
           <article key={index} className="work-item">
@@ -22,13 +23,7 @@ export function Work({ resumeData }: WorkProps) {
                 {job.name && (
                   <>
                     , <span className="job-company">
-                      {job.url ? (
-                        <a href={job.url} target="_blank" rel="noopener noreferrer">
-                          {job.name}
-                        </a>
-                      ) : (
-                        job.name
-                      )}
+                      <MaybeLink href={job.url}>{job.name}</MaybeLink>
                     </span>
                   </>
                 )}
@@ -38,7 +33,7 @@ export function Work({ resumeData }: WorkProps) {
                 {job.location && <> · <span className="job-location">{job.location}</span></>}
               </p>
             </header>
-            
+
             {job.highlights && job.highlights.length > 0 && (
               <ul className="job-highlights">
                 {job.highlights.map((highlight, i) => (
@@ -51,4 +46,4 @@ export function Work({ resumeData }: WorkProps) {
       </div>
     </section>
   );
-} 
+}

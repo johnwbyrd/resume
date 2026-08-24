@@ -1,9 +1,7 @@
-import { loadResumeData } from '@/utils/loadResumeData';
+import { resume as resumeData } from '@/utils/loadResumeData';
 import { Basics, Skills, Work, Projects, Academic } from '@/components/sections';
 
 export function Resume() {
-  const resumeData = loadResumeData();
-
   return (
     <div className="resume">
       <Basics resumeData={resumeData} />

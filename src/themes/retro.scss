@@ -1,4 +1,5 @@
 /* Retro Theme - Base Styles */
+@use './mixins' as *;
 
 :root[data-theme="retro"] {
   // Retro-specific variables
@@ -23,16 +24,11 @@
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: var(--retro-font);
-    font-size: var(--base-font-size);
   }
-  
-  /* Make all text the same size */
-  .resume * {
-    font-size: var(--base-font-size);
-  }
-  
+
+  @include flat-monospace-text;
+
   /* Override text colors for specific elements */
-  .job-duration,
   .job-location {
     color: var(--text-secondary);
   }
@@ -50,9 +46,4 @@
     background-color: var(--text-secondary);
     color: var(--bg-primary);
   }
-  
-  /* Fix for name at the top of the page */
-  .name {
-    font-size: var(--base-font-size); /* Same as all other text */
-  }
-} 
+}
