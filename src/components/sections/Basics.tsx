@@ -4,6 +4,16 @@ interface BasicsProps {
   resumeData: ResumeData;
 }
 
+function withBreaks(url: string): React.ReactNode[] {
+  return url
+    .split(/(?<=[/.])/)
+    .flatMap((part, i) => (i === 0 ? [part] : [<wbr key={i} />, part]));
+}
+
+function ensureScheme(url: string): string {
+  return /^[a-z][a-z0-9+.-]*:\/\//i.test(url) ? url : `https://${url}`;
+}
+
 export function Basics({ resumeData }: BasicsProps) {
   const { basics } = resumeData || {};
 
@@ -22,16 +32,16 @@ export function Basics({ resumeData }: BasicsProps) {
           {basics.email && <li>{basics.email}</li>}
           {basics.url && (
             <li>
-              <a href={basics.url} target="_blank" rel="noopener noreferrer">
-                {basics.url}
+              <a href={ensureScheme(basics.url)} target="_blank" rel="noopener noreferrer">
+                {withBreaks(basics.url)}
               </a>
             </li>
           )}
           {basics.profiles?.map((profile, i) => (
             <li key={i}>
               {profile.network}:{' '}
-              <a href={profile.url} target="_blank" rel="noopener noreferrer">
-                {profile.url}
+              <a href={ensureScheme(profile.url ?? '')} target="_blank" rel="noopener noreferrer">
+                {withBreaks(profile.url ?? '')}
               </a>
             </li>
           ))}

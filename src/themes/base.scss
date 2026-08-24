@@ -238,6 +238,7 @@ a {
     top: 2rem;
     align-self: start;
     font-size: 0.9em;
+    overflow-wrap: anywhere;
   }
 
   .resume-body { grid-area: body; }
