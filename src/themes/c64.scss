@@ -29,28 +29,34 @@
 }
 
 :root[data-theme="c64"] {
-  // C64 Color Palette
+  // VIC-II palette per Pepto's PAL reconstruction (pepto.de). These are
+  // desaturated and warm compared to the "idealised digital primaries" you
+  // often see online — they're what an actual CRT fed by composite PAL
+  // would have shown.
   --c64-black: #000000;
   --c64-white: #FFFFFF;
-  --c64-red: #880000;
-  --c64-cyan: #AAFFEE;
-  --c64-purple: #CC44CC;
-  --c64-green: #00CC55;
-  --c64-blue: #0000AA;
-  --c64-yellow: #EEEE77;
-  --c64-orange: #DD8855;
-  --c64-brown: #664400;
-  --c64-light-red: #FF7777;
-  --c64-dark-grey: #333333;
-  --c64-medium-grey: #777777;
-  --c64-light-green: #AAFF66;
-  --c64-light-blue: #0088FF;
-  --c64-light-grey: #BBBBBB;
+  --c64-red: #68372B;
+  --c64-cyan: #70A4B2;
+  --c64-purple: #6F3D86;
+  --c64-green: #588D43;
+  --c64-blue: #352879;
+  --c64-yellow: #B8C76F;
+  --c64-orange: #6F4F25;
+  --c64-brown: #433900;
+  --c64-light-red: #9A6759;
+  --c64-dark-grey: #444444;
+  --c64-medium-grey: #6C6C6C;
+  --c64-light-green: #9AD284;
+  --c64-light-blue: #6C5EB5;
+  --c64-light-grey: #959595;
   
-  // Theme variables that override retro
+  // Authentic C64 boot-screen palette: light-blue foreground on blue
+  // screen, framed by a light-blue border. Everything readable is the
+  // same light-blue so headings, body, meta, and links all match the
+  // "READY." look.
   --bg-primary: var(--c64-blue);
-  --text-primary: var(--c64-light-grey);
-  --text-secondary: var(--c64-cyan);
+  --text-primary: var(--c64-light-blue);
+  --text-secondary: var(--c64-light-blue);
   --border-color: var(--c64-light-blue);
   --c64-font: "C64_Pro_Mono-STYLE", monospace;
   --base-font-size: 1rem;
@@ -66,47 +72,36 @@
 
   @include flat-monospace-text;
 
-  /* Override text colors for specific elements */
-  .job-location {
-    color: var(--text-secondary);
+  /* Recreate the C64's chunky screen frame: paint the container's padding
+     zone in light-blue (the border colour) while the content area sits on
+     the blue screen interior. spread = --container-padding makes the inset
+     shadow exactly fill the padding, so the effect scales with viewport. */
+  .container {
+    box-shadow: inset 0 0 0 var(--container-padding) var(--c64-light-blue);
   }
 
-  /* Theme picker */
+  /* Theme picker — light-blue on the same blue field as the screen; hover
+     uses reverse video (blue on light-blue), matching the CTRL+9 highlight
+     state on a real C64. */
   .theme-picker-button,
   .theme-picker-menu {
-    background-color: var(--c64-dark-grey);
-    color: var(--c64-light-grey);
+    background-color: var(--c64-blue);
+    color: var(--c64-light-blue);
     border-color: var(--c64-light-blue);
   }
 
   .theme-picker-option:hover,
   .theme-picker-option:focus {
     background-color: var(--c64-light-blue);
-    color: var(--c64-white);
+    color: var(--c64-blue);
   }
-  
-  /* C64-specific styling */
-  h1 {
-    color: var(--c64-yellow);
+
+  /* Links inherit the body colour; hover flips to reverse video. */
+  a:hover {
+    background-color: var(--c64-light-blue);
+    color: var(--c64-blue);
   }
-  
-  h2 {
-    color: var(--c64-light-green);
-  }
-  
-  h3 {
-    color: var(--c64-cyan);
-  }
-  
-  a {
-    color: var(--c64-light-blue);
-    text-decoration: underline;
-    
-    &:hover {
-      color: var(--c64-white);
-    }
-  }
-  
+
   /* Add a subtle scanline effect */
   .resume {
     position: relative;
