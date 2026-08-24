@@ -5,4 +5,7 @@
 @use './simple';
 @use './elegant';
 @use './retro';
-@use './c64'; 
+@use './c64';
+
+// Print overrides — must come last so they take precedence
+@use './print';

@@ -3,7 +3,7 @@
   "basics": {
     "name": "John Byrd",
     "label": "Software Development Executive",
-    "email": "jbyrd at post dot harvard dot edu",
+    "email": "jbyrd@post.harvard.edu",
     "url": "https://www.johnbyrd.com",
     "location": {
       "city": "Irvine",
@@ -24,9 +24,9 @@
     ],
     "summary": "Software executive with an active AI portfolio: audio ML for real-time systems, LLM tooling for code understanding, and transformer internals. Decades leading engineering teams and shipping software, from the Sega Dreamcast SDK to recent audio-AI products. Currently building open-source AI tooling.",
     "highlights": [
-      "Real-world experience managing and delivering software projects",
       "Recent open-source AI work: audio ML for real-time systems, LLM code-understanding tooling, annotated transformer implementations",
       "Deep technical foundation: AI patents granted; contributions to LLVM, cryptography, and low-level systems",
+      "Decades shipping software across consoles, tools, and audio products — from the Sega Dreamcast SDK to modern audio middleware",
       "Proven passion and talent for building and mentoring engineering teams"
     ]
   },
@@ -67,7 +67,7 @@
       ]
     },
     {
-      "name": "CRI Middleware Co., LTD. (Sega)",
+      "name": "CRI Middleware (Sega)",
       "position": "Chief Operating Officer",
       "url": "https://www.criware.com/en/",
       "location": "San Francisco, CA",
@@ -136,7 +136,7 @@
       "url": "https://github.com/johnwbyrd/zbc"
     },
     {
-      "name": "microgpt / aggrogpt",
+      "name": "aggrogpt",
       "description": "Annotated reading of Karpathy's microgpt plus a typed PyTorch reimplementation with a thin tensor abstraction",
       "url": "https://github.com/johnwbyrd/aggrogpt"
     },

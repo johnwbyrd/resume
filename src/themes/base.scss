@@ -146,7 +146,7 @@ a {
   display: none;
 }
 
-@each $theme in ('simple-light', 'simple-dark', 'elegant', 'retro', 'c64') {
+@each $theme in ('simple-light', 'simple-dark', 'elegant', 'retro', 'c64', 'print') {
   [data-theme="#{$theme}"] .theme-picker-label[data-theme-label="#{$theme}"] {
     display: inline;
   }
@@ -215,6 +215,11 @@ a {
   margin-bottom: 0;
 }
 
+/* Push the title underline clear of descenders (aggrogpt, microgpt, etc.) */
+.project-item h3 a {
+  text-underline-offset: 0.35em;
+}
+
 /* Sidebar layout activates at laptop width */
 @media (min-width: 1024px) {
   :root {
@@ -222,7 +227,7 @@ a {
   }
 
   .resume {
-    grid-template-columns: minmax(180px, 220px) 1fr;
+    grid-template-columns: minmax(200px, 240px) 1fr;
     grid-template-areas: "sidebar body";
     column-gap: var(--spacing-xl);
   }
@@ -233,6 +238,13 @@ a {
     top: 2rem;
     align-self: start;
     min-width: 0;
+  }
+
+  /* Keep the name on one line in the sidebar; drop a step from the base h1 size
+     so "John Byrd" fits without breaking. */
+  .resume-hero .name {
+    white-space: nowrap;
+    @apply text-4xl;
   }
 
   .resume-aside {
@@ -247,3 +259,4 @@ a {
     font-size: 1.25rem;
   }
 }
+

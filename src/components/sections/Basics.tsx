@@ -1,17 +1,39 @@
 import { ResumeData } from '@/utils/loadResumeData';
+import { EmailLink } from '../EmailLink';
 
 interface BasicsProps {
   resumeData: ResumeData;
 }
 
-function withBreaks(url: string): React.ReactNode[] {
-  return url
-    .split(/(?<=[/.])/)
-    .flatMap((part, i) => (i === 0 ? [part] : [<wbr key={i} />, part]));
-}
-
 function ensureScheme(url: string): string {
   return /^[a-z][a-z0-9+.-]*:\/\//i.test(url) ? url : `https://${url}`;
+}
+
+function domainLabel(url: string): string {
+  return url.replace(/^[a-z][a-z0-9+.-]*:\/\//i, '').replace(/^www\./i, '').replace(/\/$/, '');
+}
+
+function profileLabel(network?: string, username?: string, url?: string): string {
+  if (username) {
+    return network?.toLowerCase() === 'github' ? `@${username}` : username;
+  }
+  if (url) return domainLabel(url);
+  return network ?? '';
+}
+
+/* Split an email so the plain address never lands in static HTML. Reversed
+   halves are handed to a client component that rebuilds the mailto: after
+   hydration; the fallback text is what readers without JavaScript see. */
+function emailProps(address: string) {
+  const at = address.indexOf('@');
+  if (at < 1) return null;
+  const user = address.slice(0, at);
+  const domain = address.slice(at + 1);
+  return {
+    dataU: user.split('').reverse().join(''),
+    dataD: domain.split('').reverse().join(''),
+    fallback: `${user} at ${domain.replace(/\./g, ' dot ')}`,
+  };
 }
 
 export function Basics({ resumeData }: BasicsProps) {
@@ -29,11 +51,18 @@ export function Basics({ resumeData }: BasicsProps) {
           {basics.location && (
             <li>{basics.location.city}, {basics.location.region}</li>
           )}
-          {basics.email && <li>{basics.email}</li>}
+          {basics.email && (() => {
+            const props = emailProps(basics.email);
+            return props ? (
+              <li>
+                <EmailLink {...props} />
+              </li>
+            ) : null;
+          })()}
           {basics.url && (
             <li>
               <a href={ensureScheme(basics.url)} target="_blank" rel="noopener noreferrer">
-                {withBreaks(basics.url)}
+                {domainLabel(basics.url)}
               </a>
             </li>
           )}
@@ -41,7 +70,7 @@ export function Basics({ resumeData }: BasicsProps) {
             <li key={i}>
               {profile.network}:{' '}
               <a href={ensureScheme(profile.url ?? '')} target="_blank" rel="noopener noreferrer">
-                {withBreaks(profile.url ?? '')}
+                {profileLabel(profile.network, profile.username, profile.url)}
               </a>
             </li>
           ))}
