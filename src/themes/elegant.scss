@@ -32,11 +32,17 @@
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: 2.25rem;
     font-style: italic;
     text-align: center;
     margin: 1rem 0 0.25rem;
     color: var(--accent);
+  }
+
+  /* Override the base sidebar-width bump so the name stays a touch smaller
+     in Elegant across breakpoints. */
+  .resume-hero .name {
+    font-size: 2rem;
   }
 
   h2 {
