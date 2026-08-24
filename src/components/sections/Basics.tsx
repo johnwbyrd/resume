@@ -20,7 +20,7 @@ export function Basics({ resumeData }: BasicsProps) {
   if (!basics) return null;
 
   return (
-    <>
+    <div className="resume-sidebar">
       <header className="resume-hero">
         <h1 className="name">{basics.name}</h1>
       </header>
@@ -47,6 +47,6 @@ export function Basics({ resumeData }: BasicsProps) {
           ))}
         </ul>
       </aside>
-    </>
+    </div>
   );
 }

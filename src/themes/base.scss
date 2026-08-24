@@ -223,20 +223,19 @@ a {
 
   .resume {
     grid-template-columns: minmax(180px, 220px) 1fr;
-    grid-template-areas:
-      "hero  hero"
-      "aside body";
+    grid-template-areas: "sidebar body";
     column-gap: var(--spacing-xl);
-    row-gap: var(--spacing-md);
   }
 
-  .resume-hero { grid-area: hero; }
-
-  .resume-aside {
-    grid-area: aside;
+  .resume-sidebar {
+    grid-area: sidebar;
     position: sticky;
     top: 2rem;
     align-self: start;
+    min-width: 0;
+  }
+
+  .resume-aside {
     font-size: 0.9em;
     overflow-wrap: anywhere;
   }
