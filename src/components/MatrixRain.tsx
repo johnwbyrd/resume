@@ -36,13 +36,17 @@ export function MatrixRain() {
     let columns: number[] = [];
 
     function resize() {
+      /* Assigning to canvas.width/height resets the canvas to transparent
+         per spec — that's the right state for both idle (any non-matrix
+         theme) and about-to-run states. Do NOT fill with black here: this
+         handler runs on every window resize, including the scrollbar-appear
+         reflow that happens shortly after load, and painting black would
+         leak through under other themes as a black frame. */
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       const count = Math.floor(canvas.width / FONT_SIZE);
       columns = Array.from({ length: count }, () => Math.random() * -canvas.height);
       ctx.font = `${FONT_SIZE}px monospace`;
-      ctx.fillStyle = '#000';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 
     function draw() {
@@ -72,6 +76,11 @@ export function MatrixRain() {
       if (running || reducedMotion) return;
       if (document.visibilityState !== 'visible') return;
       resize();
+      /* Opaque black backdrop for the trail fade to accumulate against.
+         Only meaningful while the animation is running, so it lives here
+         rather than in resize(). */
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       running = true;
       rafId = requestAnimationFrame(draw);
     }
