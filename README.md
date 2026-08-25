@@ -23,18 +23,18 @@ primitives:
 Theme-specific colors, fonts, and structure hang off CSS custom properties
 scoped to `[data-theme="…"]` attribute selectors on `<html>`. Switching
 themes just changes the attribute — no restyle recalculation, no re-render,
-no JS beyond the picker itself.
+no runtime JS beyond the picker and the Matrix theme's background canvas.
 
 ## Themes
 
-| Theme          | Notes                                              |
-| -------------- | -------------------------------------------------- |
-| `simple-light` | Default; clean sans-serif on white                 |
-| `simple-dark`  | Same layout, dark palette                          |
-| `elegant`      | Editorial serif on cream                           |
-| `retro`        | Green-on-black terminal, Courier                   |
-| `c64`          | Commodore 64 palette + font                        |
-| `print`        | Compact 2-page paper layout; also `@media print`   |
+| Theme          | Notes                                                          |
+| -------------- | -------------------------------------------------------------- |
+| `simple-light` | Default; clean sans-serif on white                             |
+| `simple-dark`  | Same layout, dark palette                                      |
+| `elegant`      | Editorial serif on cream                                       |
+| `matrix`       | Green terminal + fullscreen katakana rain behind the content   |
+| `c64`          | Commodore 64 boot screen — Pepto PAL palette, chunky border    |
+| `print`        | Compact 2-page paper layout; also `@media print`               |
 
 The Print theme doubles as a preview for the actual print output. Print
 styles are defined once in a mixin and applied both under `[data-theme="print"]`

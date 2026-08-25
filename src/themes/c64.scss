@@ -54,7 +54,10 @@
   // screen, framed by a light-blue border. Everything readable is the
   // same light-blue so headings, body, meta, and links all match the
   // "READY." look.
-  --bg-primary: var(--c64-blue);
+  /* The C64's chunky screen border fills most of the visible viewport, so
+     it takes the "primary background" slot. The blue screen interior is
+     painted only inside .container's content box, below. */
+  --bg-primary: var(--c64-light-blue);
   --text-primary: var(--c64-light-blue);
   --text-secondary: var(--c64-light-blue);
   --border-color: var(--c64-light-blue);
@@ -72,12 +75,15 @@
 
   @include flat-monospace-text;
 
-  /* Recreate the C64's chunky screen frame: paint the container's padding
-     zone in light-blue (the border colour) while the content area sits on
-     the blue screen interior. spread = --container-padding makes the inset
-     shadow exactly fill the padding, so the effect scales with viewport. */
+  /* The C64 "screen interior" — blue background painted only inside the
+     container's content-box. background-clip: content-box leaves the
+     container's own padding transparent, so body's light-blue shows through
+     there; the same body-blue also fills the container's outer margin and
+     the surrounding .main-content padding. Result: one contiguous light-blue
+     frame around a blue rectangle of text. */
   .container {
-    box-shadow: inset 0 0 0 var(--container-padding) var(--c64-light-blue);
+    background-color: var(--c64-blue);
+    background-clip: content-box;
   }
 
   /* Theme picker — light-blue on the same blue field as the screen; hover
